@@ -4,7 +4,9 @@ This is a tool to recover your minecraft account made in python 3.6
 
 To start the checker -> main.py
 
-Features: Cape cheaking for: labymod, 5zig mod, optifine, minecon.
+Features: 
+
+          Cape cheaking for: labymod, 5zig mod, optifine, minecon.
 
           Checking if an account has security questions.
           
