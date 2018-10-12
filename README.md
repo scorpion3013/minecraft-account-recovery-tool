@@ -6,7 +6,7 @@ To start the checker -> main.py
 
 Features: 
 
-          Cape cheaking for: labymod, 5zig mod, optifine, minecon.
+          Cape checking for: labymod, 5zig mod, optifine, minecon.
           Checking if an account has security questions.
           Checking if an username is three letters or shorter.
           
