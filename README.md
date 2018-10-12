@@ -11,3 +11,7 @@ Features:
           Checking if an username is three letters or shorter.
           
 Todolist: Threading, Hypixel level and rank check, Proxy support, ban checker(when threading is done)
+
+Showcase
+
+![](https://i.imgur.com/WEAMOMM.gif)
