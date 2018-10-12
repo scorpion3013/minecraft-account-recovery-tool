@@ -9,9 +9,8 @@ counter = [0, 0, 0, 0, 0, 0, 0, 0]
 
 
 for x in range(len(account_file_lines)):
-    #time.sleep(5)
-    email_username = account_file_lines[x].split(':')[0]
-    password = account_file_lines[x].split(':')[1]
+    email_username = account_file_lines[x].split(':', 1)[0]
+    password = account_file_lines[x].split(':', 1)[1]
     answer = account_login(email_username=email_username, password=password)
 
     if not str(answer).__contains__('Invalid credentials'):
@@ -64,3 +63,5 @@ counter_names = [str(counter[0]) + ' Valid accounts', str(counter[1]) + ' InVali
                  str(counter[6]) + ' Labymod accounts', str(counter[7]) + ' Short-name accounts']
 for x in range(len(counter_names) - 0):
     print(counter_names[x])
+
+input()
