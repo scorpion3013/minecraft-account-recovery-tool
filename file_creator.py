@@ -3,7 +3,7 @@ import time
 
 BASIC_PATH = str(os.getcwd())
 CURRENT_TIME = str(time.strftime('[%d-%m-%Y %H-%M-%S]'))
-FOLDER_PATH = BASIC_PATH + '\\' + CURRENT_TIME + '\\'
+FOLDER_PATH = BASIC_PATH + '\\results\\' + CURRENT_TIME + '\\'
 txt_names = ['unsecure', 'minecon', 'optifine', '5zig', 'labymod', 'special_name', 'working']
 
 
