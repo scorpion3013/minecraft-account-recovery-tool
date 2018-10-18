@@ -28,9 +28,8 @@ def hypixel_rank_check(USERNAME):
 def hypixel_level_check(USERNAME):
     request_response = requests.get('https://plancke.io/hypixel/player/stats/' + USERNAME).content
     if (str(request_response).__contains__("Player not found")): return False
-    match = re.search("Level:<\/b> .*?Karma", str(request_response)).group()
-    stepTwoOfTrashCode = match.split("<")
-    okHereYouGo = stepTwoOfTrashCode[1].split('>')
-    return okHereYouGo[1]
+    match = re.search("Level:<\/b> [1-9]*\.[1-9]*", str(request_response)).group()
+    level = match.split("</b> ")
+    return level[1]
     
 #OG-Account check planned
