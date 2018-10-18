@@ -71,7 +71,7 @@ for x in range(len(account_file_lines)):
 print('\n\nResult:\n')
 
 counter_names = [str(counter[0]) + ' Valid accounts', str(counter[1]) + ' Invalid accounts',
-                 str(counter[2]) + ' Unsecure accounts', str(counter[3]) + ' Minecon accounts',
+                 str(counter[2]) + ' Insecure accounts', str(counter[3]) + ' Minecon accounts',
                  str(counter[4]) + ' 5zig accounts', str(counter[5]) + ' Optifine accounts',
                  str(counter[6]) + ' Labymod accounts', str(counter[7]) + ' LiquidBounce accounts',
                  str(counter[8]) + ' Ranked Hypixel accounts', str(counter[10]) + ' Short-name accounts']
