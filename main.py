@@ -28,9 +28,9 @@ for x in range(len(account_file_lines)):
     answer = account_login(email_username=email_username, password=password)
 
     if not str(answer).__contains__('Invalid credentials'):
-        print('Valid Account')
         UUID = answer["availableProfiles"][0]["id"]
         USERNAME = answer["availableProfiles"][0]["name"]
+        print('Valid Account ' + USERNAME)
         hpRank = hypixel_rank_check(USERNAME)
         hpLevel = hypixel_level_check(USERNAME)
 

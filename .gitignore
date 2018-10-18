@@ -4,3 +4,9 @@ Results/
 __pycache__/
 
 \.idea/
+
+result/
+
+accounts\.txt
+
+*.txt
