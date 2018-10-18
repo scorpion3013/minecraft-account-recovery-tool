@@ -10,6 +10,6 @@ txt_names = ['insecure', 'minecon', 'optifine', '5zig', 'labymod', 'special_name
 def create_files():
     if not os.path.exists(FOLDER_PATH):
         os.makedirs(FOLDER_PATH)
-    for x in range(len(txt_names) -1):
+    for x in range(len(txt_names)):
         if not os.path.exists(FOLDER_PATH + txt_names[x] + '.txt'):
             open(FOLDER_PATH + txt_names[x] + '.txt', 'a').close()

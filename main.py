@@ -61,7 +61,7 @@ for x in range(len(account_file_lines)):
             open(FOLDER_PATH + '\\liquidbounce.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.liquidbounce += 1
             print('LiquidBounce-Cape')
-        if hypixel_rank_check is False:
+        if hpRank is not False:
             open(FOLDER_PATH + '\\hypixelRank.txt', 'a').write(account_file_lines[x] + '| Rank: ' + hpRank + "\n")
             Counter.hypixelrank += 1
             print('Hypixel Rank: ' + hpRank)
@@ -74,12 +74,10 @@ for x in range(len(account_file_lines)):
             open(FOLDER_PATH + '\\special_name.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.shortname += 1
             print('Short name')
-
-        print('Progress: ' + str(x + 1)+'/' + str(len(account_file_lines)))
     else:
         print('Invalid Account')
         Counter.invalid += 1
-        print('Progress: ' + str(x + 1) + '/' + str(len(account_file_lines)))
+    print('Progress: ' + str(x + 1) + '/' + str(len(account_file_lines)) + '\n' + '-'*30)
 
 
 Counter_list = [str(Counter.valid) + ' Valid accounts',str(Counter.invalid) + ' Invalid accounts',
