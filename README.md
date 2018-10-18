@@ -10,8 +10,9 @@ Features:
           Cape checking for: labymod, 5zig mod, optifine, minecon.
           Checking if an account has security questions.
           Checking if an username is three letters or shorter.
+          Checking if an accounts has a rank on hypixel and his level
           
-Todolist: Threading, Hypixel level and rank check, Proxy support, ban checker(when threading is done)
+Todolist: Threading, Proxy support, ban checker(when threading is done)
 
 Showcase
 
