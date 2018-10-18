@@ -2,7 +2,6 @@ import requests
 import base64
 import json
 
-
 def minecon_cape_request(UUID):
     try:
         request_reponse = requests.get('https://sessionserver.mojang.com/session/minecraft/profile/' + UUID).json()
@@ -40,6 +39,16 @@ def laby_mod_cape_request(UUID):
         uuid_with_dashes = UUID[:8] + '-' + UUID[8:12] + '-' + UUID[12:16] + '-' + UUID[16:20] + '-' + UUID[20:]
         request_reponse = requests.get('http://capes.labymod.net/capes/' + uuid_with_dashes).content
         if not str(request_reponse).__contains__('Not Found'):
+            return True
+        else:
+            return False
+    except Exception as e:
+        print(e)
+        pass
+def liquidbounce_cape_request(UUID):
+    try:
+        request_reponse = requests.get('https://raw.githubusercontent.com/CCBlueX/FileCloud/master/LiquidBounce/cape/service.json').content
+        if str(request_reponse).__contains__(UUID):
             return True
         else:
             return False
