@@ -62,11 +62,11 @@ for x in range(len(account_file_lines)):
             Counter.liquidbounce += 1
             print('LiquidBounce-Cape')
         if hpRank is not False:
-            open(FOLDER_PATH + '\\hypixelRank.txt', 'a').write(account_file_lines[x] + '| Rank: ' + hpRank + "\n")
+            open(FOLDER_PATH + '\\hypixelRank.txt', 'a').write(account_file_lines[x] + ' Rank: ' + hpRank + "\n")
             Counter.hypixelrank += 1
             print('Hypixel Rank: ' + hpRank)
         if float(hpLevel) >= hypixel_min_level:
-            open(FOLDER_PATH + '\\hypixelLevel.txt', 'a').write(account_file_lines[x] + '| Level: ' + hpLevel + "\n")
+            open(FOLDER_PATH + '\\hypixelLevel.txt', 'a').write(account_file_lines[x] + ' Level: ' + hpLevel + "\n")
             Counter.hypixellevel += 1
             print('Hypixel Level: ' + hpLevel)
         
