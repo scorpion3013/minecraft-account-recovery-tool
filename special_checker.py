@@ -30,5 +30,5 @@ def mineplex_rank_check(USERNAME):
 		match = re.search("Rank\(\'.*?\'\)", response).group().split("('")[1].split("')")
 		if (match[0] == "PLAYER"): return False 
 		return match[0]
-
+  
 #OG-Account check planned

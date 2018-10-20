@@ -20,7 +20,7 @@ class Counter:
     mineplexrank = 0
 	
 hypixel_min_level = 1
-	
+
 for x in range(len(account_file_lines)):
     email_username = account_file_lines[x].split(':', 1)[0]
     password = account_file_lines[x].split(':', 1)[1]
