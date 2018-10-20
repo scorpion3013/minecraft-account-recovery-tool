@@ -15,7 +15,6 @@ def hypixel_rank_check(USERNAME):
 			match = re.search("\"\[.*?\]", response).group().split("[")[1].split("]")[0]
 			return match
 		return False
-print (hypixel_rank_check("stevenr8"))
 def hypixel_level_check(USERNAME):
     request_response = requests.get('https://plancke.io/hypixel/player/stats/' + USERNAME).content
     if (str(request_response).__contains__("Player not found")):
@@ -23,7 +22,6 @@ def hypixel_level_check(USERNAME):
     else:
         match = re.search("<b>Level:</b> [1-9]*[^><]*[1-9]*", str(request_response)).group()
         level = match.split("</b> ")
-		
         return level[1]
 def mineplex_rank_check(USERNAME):
 	response = str(requests.get('https://www.mineplex.com/players/' + USERNAME).text)
