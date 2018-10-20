@@ -8,7 +8,7 @@ def under_four_character_long(USERNAME):
         return False
 def hypixel_rank_check(USERNAME):
 	response = str(requests.get('https://plancke.io/hypixel/player/stats/' + USERNAME).text)
-	if response.__contains__("That player cannot be found."): return False
+	if response.__contains__("Player not found"): return False
 	else:
 		rank = re.search("\"\[.*?\]", response)
 		if(bool(rank) != False):
