@@ -11,7 +11,7 @@ Features:
           Checking if an account has security questions.
           Checking if an username is three letters or shorter.
           Checking if an account has a rank on Hypixel and its level.
-		  Checking if an account has a rank on Mineplex.
+          Checking if an account has a rank on Mineplex.
           
 Todolist: Threading, Proxy support, ban checker(when threading is done)
 
