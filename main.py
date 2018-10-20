@@ -17,7 +17,7 @@ class Counter:
     hypixelrank = 0
     hypixellevel = 0
     shortname = 0
-	mineplexrank = 0
+    mineplexrank = 0
 	
 hypixel_min_level = 1
 	
@@ -32,7 +32,7 @@ for x in range(len(account_file_lines)):
         print('Valid Account ' + USERNAME)
         hpRank = hypixel_rank_check(USERNAME)
         hpLevel = hypixel_level_check(USERNAME)
-		mpRank = mineplex_rank_check(USERNAME)
+        mpRank = mineplex_rank_check(USERNAME)
 
         open(FOLDER_PATH + '\\working.txt', 'a').write(account_file_lines[x] + "\n")
         Counter.valid += 1
@@ -69,7 +69,7 @@ for x in range(len(account_file_lines)):
             open(FOLDER_PATH + '\\hypixelLevel.txt', 'a').write(account_file_lines[x] + ' Level: ' + hpLevel + "\n")
             Counter.hypixellevel += 1
             print('Hypixel Level: ' + hpLevel)
-		if mpRank is not False:
+        if mpRank is not False:
             open(FOLDER_PATH + '\\mineplexRank.txt', 'a').write(account_file_lines[x] + ' Rank: ' + hpRank + "\n")
             Counter.hypixelrank += 1
             print('Mineplex Rank: ' + hpRank)
