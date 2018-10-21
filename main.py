@@ -5,6 +5,7 @@ from file_creator import *
 
 create_files()
 account_file_lines = open(BASIC_PATH + '\\accounts.txt').read().split('\n')
+count = 0
 class Counter:
     valid = 0
     invalid = 0
@@ -22,6 +23,9 @@ class Counter:
 hypixel_min_level = 15
 
 for x in range(len(account_file_lines)):
+    if not account_file_lines[x].__contains__(':'):
+        continue
+    count += 1
     email_username = account_file_lines[x].split(':', 1)[0]
     password = account_file_lines[x].split(':', 1)[1]
     answer = account_login(email_username=email_username, password=password)
@@ -88,7 +92,7 @@ for x in range(len(account_file_lines)):
     else:
         print('Invalid Account')
         Counter.invalid += 1
-    print('Progress: ' + str(x + 1) + '/' + str(len(account_file_lines)) + '\n' + '-'*30)
+    print('Progress: ' + str(count) + '/' + str(str(account_file_lines).count(':')) + '\n' + '-'*30)
 
 Counter_list = [str(Counter.valid) + ' Valid accounts',str(Counter.invalid) + ' Invalid accounts',
              str(Counter.insecure) + ' Unsecure accounts',str(Counter.minecon) + ' Minecon-capes',
