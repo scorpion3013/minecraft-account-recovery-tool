@@ -7,10 +7,11 @@ create a "accounts.txt" file in the folder with the format "email:password"
 
 Features: 
 
-          Cape checking for: labymod, 5zig mod, optifine, minecon.
+          Cape checking for: labymod, 5zig mod, optifine, minecon, liquidbounce.
           Checking if an account has security questions.
           Checking if an username is three letters or shorter.
-          Checking if an accounts has a rank on hypixel and his level
+          Checking if an account has a rank on Hypixel and its level.
+          Checking if an account has a rank on Mineplex.
           
 Todolist: Threading, Proxy support, ban checker(when threading is done)
 
