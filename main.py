@@ -29,7 +29,7 @@ for x in range(len(account_file_lines)):
     if not str(answer).__contains__('Invalid credentials'):
         UUID = answer["availableProfiles"][0]["id"]
         USERNAME = answer["availableProfiles"][0]["name"]
-        unsecure = minecon = fivezig = optifine = labymod = liquidbounce = hypixelrank = ypixellevel =  mineplexrank = \
+        unsecure = minecon = fivezig = optifine = labymod = liquidbounce = hypixelrank = hypixellevel =  mineplexrank = \
         shortname = ''
         hpRank = hypixel_rank_check(USERNAME)
         hpLevel = hypixel_level_check(USERNAME)
@@ -80,6 +80,8 @@ for x in range(len(account_file_lines)):
             shortname = USERNAME + ' has a short name\n'
         print('Valid account ' + USERNAME + '\n' + unsecure + minecon + fivezig + optifine + labymod + liquidbounce
               + hypixelrank + hypixellevel + mineplexrank + shortname )
+        unsecure = minecon = fivezig = optifine = labymod = liquidbounce = hypixelrank = hypixellevel = mineplexrank = \
+            shortname = ''
     else:
         print('Invalid Account')
         Counter.invalid += 1
