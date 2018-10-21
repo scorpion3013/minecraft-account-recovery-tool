@@ -4,7 +4,7 @@ from special_checker import *
 from file_creator import *
 
 create_files()
-account_file_lines = open(BASIC_PATH + '\\accounts.txt').read().split('\n')
+account_file_lines = open(BASIC_PATH + os.sep + 'accounts.txt').read().split('\n')
 count = 0
 class Counter:
     valid = 0
