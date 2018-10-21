@@ -8,7 +8,7 @@ account_file_lines = open(BASIC_PATH + '\\accounts.txt').read().split('\n')
 class Counter:
     valid = 0
     invalid = 0
-    unsecure = 0
+    insecure = 0
     minecon = 0
     fivezig = 0
     optifine = 0
@@ -18,7 +18,7 @@ class Counter:
     hypixellevel = 0
     shortname = 0
     mineplexrank = 0
-	
+
 hypixel_min_level = 1
 
 for x in range(len(account_file_lines)):
@@ -39,7 +39,7 @@ for x in range(len(account_file_lines)):
 
         if bool(answer["user"]["secured"]) is False:
             open(FOLDER_PATH + '\\unsecure.txt', 'a').write(account_file_lines[x] + "\n")
-            Counter.unsecure += 1
+            Counter.insecure += 1
             print('Unsecure account')
         if minecon_cape_request(UUID) is True:
             open(FOLDER_PATH + '\\minecon.txt', 'a').write(account_file_lines[x] + "\n")

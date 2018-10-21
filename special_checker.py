@@ -1,6 +1,6 @@
 import requests
 import re
-
+import json
 def under_four_character_long(USERNAME):
 
     if len(USERNAME) <= 3:
@@ -10,17 +10,30 @@ def under_four_character_long(USERNAME):
 
 
 def hypixel_rank_check(USERNAME):
-
-    response = str(requests.get('https://plancke.io/hypixel/player/stats/' + USERNAME).text)
-    if response.__contains__("Player not found"):
+    request_response = requests.get('https://api.hypixel.net/player?key=79326ca4-54b2-4a8a-a5b4-d9ee111f674b&name=' + USERNAME).content
+    answer_json = json.loads(request_response)
+    rank = ''
+    try:
+        rank = rank + '|' + str(answer_json["player"]['rank'])
+    except:
+        pass
+    try:
+        rank = rank + '|' + str(answer_json["player"]['newPackageRank']).replace('_PLUS', '+')
+    except:
+        pass
+    try:
+        rank = rank + '|' + str(answer_json["player"]['packageRank']).replace('_PLUS', '+')
+    except:
+        pass
+    try:
+        if not str(answer_json["player"]['monthlyPackageRank']) == 'NONE':
+            rank = rank + '|' + str(answer_json["player"]['monthlyPackageRank']).replace('SUPERSTAR', 'MVP++')
+    except:
+        pass
+    if rank == '':
         return False
     else:
-        rank = re.search("\"\[.*?\]", response)
-        if(bool(rank) != False):
-            match = re.search("\"\[.*?\]", response).group().split("[")[1].split("]")[0]
-            return match
-        return False
-
+        return rank
 
 def hypixel_level_check(USERNAME):
 
