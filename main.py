@@ -29,7 +29,8 @@ for x in range(len(account_file_lines)):
     if not str(answer).__contains__('Invalid credentials'):
         UUID = answer["availableProfiles"][0]["id"]
         USERNAME = answer["availableProfiles"][0]["name"]
-        print('Valid Account ' + USERNAME)
+        unsecure = minecon = fivezig = optifine = labymod = liquidbounce = hypixelrank = ypixellevel =  mineplexrank = \
+        shortname = ''
         hpRank = hypixel_rank_check(USERNAME)
         hpLevel = hypixel_level_check(USERNAME)
         mpRank = mineplex_rank_check(USERNAME)
@@ -40,43 +41,45 @@ for x in range(len(account_file_lines)):
         if bool(answer["user"]["secured"]) is False:
             open(FOLDER_PATH + '\\unsecure.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.insecure += 1
-            print('Unsecure account')
+            unsecure = USERNAME + ' is unsecure\n'
         if minecon_cape_request(UUID) is True:
             open(FOLDER_PATH + '\\minecon.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.minecon += 1
-            print('Minecon-Cape')
+            minecon = USERNAME + ' has a minecon cape\n'
         if five_zig_cape_request(UUID) is True:
             open(FOLDER_PATH + '\\5zig.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.fivezig += 1
-            print('5zig-Cape')
+            fivezig = USERNAME + ' has a 5zig cape\n'
         if optifine_cape_request(USERNAME) is True:
             open(FOLDER_PATH + '\\optifine.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.optifine += 1
-            print('Optifine-Cape')
+            optifine = USERNAME + ' has a optifine cape\n'
         if laby_mod_cape_request(UUID) is True:
             open(FOLDER_PATH + '\\labymod.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.labymod += 1
-            print('Labymod-Cape')
+            labymod = USERNAME + ' has a labymod cape\n'
         if liquidbounce_cape_request(UUID) is True:
             open(FOLDER_PATH + '\\liquidbounce.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.liquidbounce += 1
-            print('LiquidBounce-Cape')
+            liquidbounce = USERNAME + ' has a liquidbounce cape\n'
         if hpRank is not False:
             open(FOLDER_PATH + '\\hypixelRank.txt', 'a').write(account_file_lines[x] + ' Rank: ' + hpRank + "\n")
             Counter.hypixelrank += 1
-            print('Hypixel Rank: ' + hpRank)
+            hypixelrank = USERNAME + ' Hypixelrank: ' + hpRank + '\n'
         if float(hpLevel) >= hypixel_min_level:
             open(FOLDER_PATH + '\\hypixelLevel.txt', 'a').write(account_file_lines[x] + ' Level: ' + hpLevel + "\n")
             Counter.hypixellevel += 1
-            print('Hypixel Level: ' + hpLevel)
+            hypixellevel = USERNAME + ' Hypixellevel: ' + hpLevel + '\n'
         if mpRank is not False:
             open(FOLDER_PATH + '\\mineplexRank.txt', 'a').write(account_file_lines[x] + ' Rank: ' + mpRank + "\n")
             Counter.mineplexrank += 1
-            print('Mineplex Rank: ' + mpRank)
+            mineplexrank = USERNAME + ' Mineplexrank: ' + mpRank + '\n'
         if under_four_character_long(USERNAME) is True:
             open(FOLDER_PATH + '\\special_name.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.shortname += 1
-            print('Short name')
+            shortname = USERNAME + ' has a short name\n'
+        print('Valid account ' + USERNAME + '\n' + unsecure + minecon + fivezig + optifine + labymod + liquidbounce
+              + hypixelrank + hypixellevel + mineplexrank + shortname )
     else:
         print('Invalid Account')
         Counter.invalid += 1
