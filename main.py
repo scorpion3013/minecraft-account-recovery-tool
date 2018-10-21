@@ -19,7 +19,7 @@ class Counter:
     shortname = 0
     mineplexrank = 0
 
-hypixel_min_level = 1
+hypixel_min_level = 15
 
 for x in range(len(account_file_lines)):
     email_username = account_file_lines[x].split(':', 1)[0]
@@ -31,8 +31,8 @@ for x in range(len(account_file_lines)):
         USERNAME = answer["availableProfiles"][0]["name"]
         unsecure = minecon = fivezig = optifine = labymod = liquidbounce = hypixelrank = hypixellevel =  mineplexrank = \
         shortname = ''
-        hpRank = hypixel_rank_check(USERNAME)
-        hpLevel = hypixel_level_check(USERNAME)
+        hp = hypixel_check(USERNAME)
+
         mpRank = mineplex_rank_check(USERNAME)
 
         open(FOLDER_PATH + '\\working.txt', 'a').write(account_file_lines[x] + "\n")
@@ -62,14 +62,17 @@ for x in range(len(account_file_lines)):
             open(FOLDER_PATH + '\\liquidbounce.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.liquidbounce += 1
             liquidbounce = USERNAME + ' has a liquidbounce cape\n'
-        if hpRank is not False:
-            open(FOLDER_PATH + '\\hypixelRank.txt', 'a').write(account_file_lines[x] + ' Rank: ' + hpRank + "\n")
+
+        if hp[0] != 'False':
+            open(FOLDER_PATH + '\\hypixelRank.txt', 'a').write(account_file_lines[x] + ' Rank: ' + hp[0] + "\n")
             Counter.hypixelrank += 1
-            hypixelrank = USERNAME + ' Hypixelrank: ' + hpRank + '\n'
-        if float(hpLevel) >= hypixel_min_level:
-            open(FOLDER_PATH + '\\hypixelLevel.txt', 'a').write(account_file_lines[x] + ' Level: ' + hpLevel + "\n")
+            hypixelrank = USERNAME + ' Hypixelrank: ' + hp[0] + '\n'
+
+        if int(hp[1]) >= hypixel_min_level and hp[1] != 0:
+            open(FOLDER_PATH + '\\hypixelLevel.txt', 'a').write(account_file_lines[x] + ' Level: ' + str(hp[1]) + "\n")
             Counter.hypixellevel += 1
-            hypixellevel = USERNAME + ' Hypixellevel: ' + hpLevel + '\n'
+            hypixellevel = USERNAME + ' Hypixellevel: ' + str(hp[1]) + '\n'
+
         if mpRank is not False:
             open(FOLDER_PATH + '\\mineplexRank.txt', 'a').write(account_file_lines[x] + ' Rank: ' + mpRank + "\n")
             Counter.mineplexrank += 1

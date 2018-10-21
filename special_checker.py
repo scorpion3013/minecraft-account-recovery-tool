@@ -1,6 +1,7 @@
 import requests
 import re
 import json
+import math
 def under_four_character_long(USERNAME):
 
     if len(USERNAME) <= 3:
@@ -9,10 +10,16 @@ def under_four_character_long(USERNAME):
         return False
 
 
-def hypixel_rank_check(USERNAME):
+def hypixel_check(USERNAME):
     request_response = requests.get('https://api.hypixel.net/player?key=79326ca4-54b2-4a8a-a5b4-d9ee111f674b&name=' + USERNAME).content
     answer_json = json.loads(request_response)
     rank = ''
+    level = ''
+    both = ['','']
+    try:
+        level = math.floor(-2.5 + math.sqrt(12.25 + 8 * 10 ** -4 * answer_json["player"]['networkExp']))
+    except:
+        pass
     try:
         rank = rank + '|' + str(answer_json["player"]['rank'])
     except:
@@ -31,19 +38,14 @@ def hypixel_rank_check(USERNAME):
     except:
         pass
     if rank == '':
-        return False
+        both[0] = 'False'
     else:
-        return rank
-
-def hypixel_level_check(USERNAME):
-
-    request_response = requests.get('https://plancke.io/hypixel/player/stats/' + USERNAME).content
-    if (str(request_response).__contains__("Player not found")):
-        return False
+        both[0] = rank
+    if level == '':
+        both[1] = 0
     else:
-        match = re.search("<b>Level:</b> [1-9]*[^><]*[1-9]*", str(request_response)).group()
-        level = match.split("</b> ")
-        return level[1]
+        both[1] = int(level)
+    return both
 
 
 def mineplex_rank_check(USERNAME):
