@@ -71,7 +71,7 @@ for x in range(len(account_file_lines)):
             print('Hypixel Level: ' + hpLevel)
         if mpRank is not False:
             open(FOLDER_PATH + '\\mineplexRank.txt', 'a').write(account_file_lines[x] + ' Rank: ' + hpRank + "\n")
-            Counter.hypixelrank += 1
+            Counter.mineplexrank += 1
             print('Mineplex Rank: ' + hpRank)
         if under_four_character_long(USERNAME) is True:
             open(FOLDER_PATH + '\\special_name.txt', 'a').write(account_file_lines[x] + "\n")
