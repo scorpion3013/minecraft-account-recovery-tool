@@ -53,7 +53,7 @@ def mineplex_rank_check(USERNAME):
         return False
     else:
         match = "{group}".format(group=re.search(r"Rank\(\'(.*)\'\)", response).group(1))
-        if (match == "player"):
+        if (match.lower() == "player"):
             return False
         else:
             return match
