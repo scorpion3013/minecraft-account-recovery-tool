@@ -3,9 +3,12 @@ import requests
 import random
 import os
 from file_creator import BASIC_PATH
+
+use_proxys = False
+
 def account_login(email_username, password):
    try:
-       proxy = str((random.choice(list(open(BASIC_PATH + os.sep + 'proxies.txt'))))).replace('\n','')
+
        headers = {"content-type": "application/json"}
        request_body = json.dumps({
            'agent': {
@@ -16,15 +19,19 @@ def account_login(email_username, password):
            'password': password,
            'requestUser': 'true'
        })
-       http_proxy = "http://" + proxy
-       https_proxy = "https://" + proxy
+       if use_proxys == True:
+           proxy = str((random.choice(list(open(BASIC_PATH + os.sep + 'proxies.txt'))))).replace('\n', '')
+           http_proxy = "http://" + proxy
+           https_proxy = "https://" + proxy
 
-       proxyDict = {
-           "http": http_proxy,
-           "https": https_proxy,
-       }
-
-       answer = requests.post('https://authserver.mojang.com/authenticate',data=request_body, headers=headers, proxies=proxyDict).content
+           proxyDict = {
+               "http": http_proxy,
+               "https": https_proxy,
+           }
+           answer = requests.post('https://authserver.mojang.com/authenticate', data=request_body, headers=headers,
+                                  proxies=proxyDict).content
+       else:
+            answer = requests.post('https://authserver.mojang.com/authenticate',data=request_body, headers=headers).content
 
        answer_json = json.loads(answer)
    except Exception as e:

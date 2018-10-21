@@ -6,7 +6,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 create_files()
 account_file_lines = open(BASIC_PATH + os.sep + 'accounts.txt').read().split('\n')
 count = 0
-threads = 100
+threads = 1
 class Counter:
     valid = 0
     invalid = 0
@@ -119,4 +119,5 @@ print('\n\nResult:\n')
 for x in range(len(Counter_list) - 0):
     print(Counter_list[x])
 
+print('Finished')
 input()
