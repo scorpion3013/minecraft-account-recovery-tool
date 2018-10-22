@@ -18,3 +18,8 @@ Todolist: Threading, Proxy support, ban checker(when threading is done)
 Showcase
 
 ![](https://i.imgur.com/wf9mZRO.gif)
+
+With threading in it
+
+
+![](https://i.imgur.com/MStAKHN.gif)
