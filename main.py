@@ -6,7 +6,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 create_files()
 account_file_lines = open(BASIC_PATH + os.sep + 'accounts.txt').read().split('\n')
 count = 0
-threads = 1
+threads = 8
 class Counter:
     valid = 0
     invalid = 0
@@ -86,11 +86,12 @@ def check(x):
             Counter.shortname += 1
             shortname = USERNAME + ' has a short name\n'
         print('Valid account ' + USERNAME + '\n' + unsecure + minecon + fivezig + optifine + labymod + liquidbounce
-              + hypixelrank + hypixellevel + mineplexrank + shortname )
+              + hypixelrank + hypixellevel + mineplexrank + shortname
+              + '\n' + '---' * 6 + '\n')
         unsecure = minecon = fivezig = optifine = labymod = liquidbounce = hypixelrank = hypixellevel = mineplexrank = \
             shortname = ''
     else:
-        print('Invalid Account')
+        print('Invalid Account' + '\n' + '---' * 6 + '\n')
         Counter.invalid += 1
 
 def theads_two(numbers, threads=1):
