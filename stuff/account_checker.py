@@ -2,7 +2,7 @@ import json
 import requests
 import random
 import os
-from file_creator import BASIC_PATH
+from stuff.file_creator import BASIC_PATH
 
 use_proxys = False
 

@@ -1,7 +1,7 @@
-from account_checker import *
-from cape_checker import *
-from special_checker import *
-from file_creator import *
+from stuff.account_checker import *
+from stuff.cape_checker import *
+from stuff.special_checker import *
+from stuff.file_creator import *
 from multiprocessing.dummy import Pool as ThreadPool
 create_files()
 account_file_lines = open(BASIC_PATH + os.sep + 'accounts.txt').read().split('\n')
@@ -35,7 +35,7 @@ def check(x):
         USERNAME = answer["availableProfiles"][0]["name"]
         unsecure = minecon = fivezig = optifine = labymod = liquidbounce = hypixelrank = hypixellevel =  mineplexrank = \
         shortname = ''
-        hp = hypixel_check(USERNAME)
+        hp = hypixel_checkAPI(USERNAME)
 
         mpRank = mineplex_rank_check(USERNAME)
 
