@@ -2,11 +2,12 @@ from stuff.account_checker import *
 from stuff.cape_checker import *
 from stuff.special_checker import *
 from stuff.file_creator import *
+from stuff.config_reader import *
 from multiprocessing.dummy import Pool as ThreadPool
 create_files()
 account_file_lines = open(BASIC_PATH + os.sep + 'accounts.txt').read().split('\n')
-count = 0
-threads = 8
+
+threads = Checker.Threads.thread_amount
 class Counter:
     valid = 0
     invalid = 0
@@ -35,6 +36,7 @@ def check(x):
         USERNAME = answer["availableProfiles"][0]["name"]
         unsecure = minecon = fivezig = optifine = labymod = liquidbounce = hypixelrank = hypixellevel =  mineplexrank = \
         shortname = ''
+
         hp = hypixel_checkAPI(USERNAME)
 
         mpRank = mineplex_rank_check(USERNAME)
