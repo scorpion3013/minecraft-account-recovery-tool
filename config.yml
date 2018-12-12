@@ -18,12 +18,12 @@ checker:
     b_hypixel: True
     i_minlevel_hypixel: 15
   threads:
-    i_threads: 8
+    i_threads: 10
   proxy:
-    b_proxy: True
-
+    b_proxy: True #if proxys should be used
+    b_check: True #if proxys should be checked before using
 proxy_checker:
   i_timeout: 5000 #Milleseconds
-  i_threads: 10
-  i_recheck_amount: 0 #0 to disable this feature
-  s_proxy_judge: 'aznet.net'
+  i_threads: 200
+  i_recheck_amount: 0 #0 to disable this feature | not made yet omegalul
+  s_proxy_judge: 'http://azenv.net/'

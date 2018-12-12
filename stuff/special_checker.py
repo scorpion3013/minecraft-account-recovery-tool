@@ -77,12 +77,15 @@ def hypixel_check_plank(username):
 
 
 def mineplex_rank_check(username):
-    response = str(requests.get('https://www.mineplex.com/players/' + username).text)
-    if response.__contains__("That player cannot be found."):
-        return False
-    else:
-        match = "{group}".format(group=re.search(r"Rank\(\'(.*)\'\)", response).group(1))
-        if match.lower() == "player":
+    try:
+        response = str(requests.get('https://www.mineplex.com/players/' + username).text)
+        if response.__contains__("That player cannot be found."):
             return False
         else:
-            return match
+            match = "{group}".format(group=re.search(r"Rank\(\'(.*)\'\)", response).group(1))
+            if match.lower() == "player":
+                return False
+            else:
+                return match
+    except:
+        return False
