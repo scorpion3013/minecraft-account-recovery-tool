@@ -4,18 +4,18 @@ import json
 import math
 
 
-def under_four_character_long(USERNAME):
-    if len(USERNAME) <= 3:
+def under_four_character_long(username):
+    if len(username) <= 3:
         return True
     else:
         return False
 
 
-def hypixel_checkAPI(USERNAME):
+def hypixel_check_api(username):
     both = ['', '']
     try:
         request_response = requests.get(
-            'https://api.hypixel.net/player?key=79326ca4-54b2-4a8a-a5b4-d9ee111f674b&name=' + USERNAME).content
+            'https://api.hypixel.net/player?key=79326ca4-54b2-4a8a-a5b4-d9ee111f674b&name=' + username).content
         answer_json = json.loads(request_response)
         rank = ''
         level = ''
@@ -56,10 +56,10 @@ def hypixel_checkAPI(USERNAME):
         return both
 
 
-def hypixel_checkPLANK(USERNAME):
+def hypixel_check_plank(username):
     both = ['False', '']
     try:
-        request_response = str(requests.get('https://plancke.io/hypixel/player/stats/' + USERNAME).text)
+        request_response = str(requests.get('https://plancke.io/hypixel/player/stats/' + username).text)
         if request_response.__contains__("Hypixel Api down"):
             print('Hypixel API is Down or Plank error')
             both[1] = 0
@@ -76,14 +76,13 @@ def hypixel_checkPLANK(USERNAME):
         return both
 
 
-def mineplex_rank_check(USERNAME):
-    response = str(requests.get('https://www.mineplex.com/players/' + USERNAME).text)
+def mineplex_rank_check(username):
+    response = str(requests.get('https://www.mineplex.com/players/' + username).text)
     if response.__contains__("That player cannot be found."):
         return False
     else:
         match = "{group}".format(group=re.search(r"Rank\(\'(.*)\'\)", response).group(1))
-        if (match.lower() == "player"):
+        if match.lower() == "player":
             return False
         else:
             return match
-
