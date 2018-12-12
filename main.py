@@ -6,6 +6,7 @@ from stuff.config_reader import *
 from multiprocessing.dummy import Pool as ThreadPool
 from pyfiglet import Figlet
 from termcolor import colored
+
 import platform
 from stuff import checker
 create_files()
