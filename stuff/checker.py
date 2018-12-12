@@ -1,10 +1,11 @@
 import json
 import os
 import random
+import time
 from multiprocessing.dummy import Pool as ThreadPool
 from stuff.config_reader import *
 import requests
-from termcolor import colored
+from termcolor import colored, cprint
 import stuff.config_reader
 from stuff.file_creator import BASIC_PATH
 import colorama
@@ -41,8 +42,8 @@ def account_login(email_username, password):
 
                proxyy = str(random.choice(proxy.proxys))
                proxy_dict = {
-                   'http': "http://" + proxyy.replace("\n",""),
-                   'https': "http://" + proxyy.replace("\n","")
+                   'http': "http://" + proxyy.replace("\n", ""),
+                   'https': "http://" + proxyy.replace("\n", "")
                }
                try:
                    answer = requests.post('https://authserver.mojang.com/authenticate', data=request_body, headers=headers, proxies=proxy_dict, timeout=10).content
@@ -50,12 +51,13 @@ def account_login(email_username, password):
                except Exception as e:
                    #print(e)
                    proxy.proxys.remove(proxyy)
-                   print("Proxy removed cause it was shit.")
+                   print("\nProxy removed cause it was shit.")
+                   time.sleep(2)
                    continue
 
        answer_json = json.loads(answer)
    except Exception as e:
-       print(e)
+       #print(e)
        answer_json = 'Invalid credentials'
    return answer_json
 
@@ -73,12 +75,16 @@ def checkproxies(threads, timeout, proxyjudge):
         try:
             r = requests.get(proxyjudge, proxies=proxy_dict, timeout=timeout).content.decode()
             if r.__contains__(myip):
-                print(colored(proxie + " Working but transparent", "yellow"))
+                #print(colored(proxie + " Working but transparent", "yellow"))
+                cprint("\n" + proxie + " Working but transparent", "yellow")
+
             else:
-                print(colored(proxie + " Working", "green"))
+                cprint("\n" + proxie + " Working", "green")
+                #print(colored("\n" + proxie + " Working", "green") + "\n")
                 working.append(proxies[x])
         except:
-            print(colored(proxie + " Not Working", "red"))
+            cprint("\n" + proxie + " Not Working", "red")
+            #print(colored("\n" + proxie + " Not Working", "red") + "\n")
 
     def theads_two(numbers, threads=threads):
         pool = ThreadPool(threads)

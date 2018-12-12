@@ -97,9 +97,9 @@ def check(x):
             open(FOLDER_PATH + os.sep + 'special_name.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.shortname += 1
 
-        print(colored("Valid account " + username, "green"))
+        cprint("\nValid account " + username, "green")
     else:
-        print(colored('Invalid account', "red"))
+        cprint('\nInvalid account', "red")
         Counter.invalid += 1
     if windows:
         ctypes.windll.kernel32.SetConsoleTitleW(
