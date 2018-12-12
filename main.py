@@ -6,12 +6,8 @@ from stuff.config_reader import *
 from multiprocessing.dummy import Pool as ThreadPool
 from pyfiglet import Figlet
 from termcolor import colored
-import colorama
-colorama.init()
 import platform
 from stuff import checker
-
-time.sleep(5)
 create_files()
 account_file_lines = open(BASIC_PATH + os.sep + 'accounts.txt').read().split('\n')
 threads = Checker.Threads.thread_amount

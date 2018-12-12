@@ -2,9 +2,9 @@ checker:
   capes:
     b_liquidbounce: False
     b_optifine: True
-    b_labymod:  True
+    b_labymod:  False
     b_minecon:  True
-    b_5zig: True
+    b_5zig: False
   hypixel:
     i_method: 0
     #0 = api

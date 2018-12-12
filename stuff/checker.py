@@ -7,8 +7,7 @@ import requests
 from termcolor import colored
 import stuff.config_reader
 from stuff.file_creator import BASIC_PATH
-import colorama
-colorama.init()
+
 
 
 class proxy:
