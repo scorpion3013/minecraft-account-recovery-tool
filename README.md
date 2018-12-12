@@ -6,8 +6,8 @@ x
 To start the checker -> main.py
 Place your accounts in the "accounts.txt" file. Format is "email:password"
 Place your proxies in the "proxies.txt" file. Format is "ip:port". (Auth proxies, Rotating proxies are not supported yet.)
-Features: 
 
+Features: 
 
           Multi-Threading.
           HTTP Proxy Support.
