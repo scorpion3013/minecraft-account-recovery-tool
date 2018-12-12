@@ -18,3 +18,4 @@ Todolist: Threading, Proxy support, ban checker(when threading is done)
 
 Showcase
 
+https://streamable.com/e6yr7
