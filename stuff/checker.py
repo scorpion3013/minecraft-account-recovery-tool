@@ -34,26 +34,21 @@ def account_login(email_username, password):
        })
 
        if not stuff.config_reader.Checker.Proxy.proxy:
-           print("1")
            answer = requests.post('https://authserver.mojang.com/authenticate', data=request_body, headers=headers).content
        else:
-           print("2")
            while True:
-               print("3")
 
                proxyy = str(random.choice(proxy.proxys))
                proxy_dict = {
-                   "http": proxyy.replace("\n", ""),
-                   "htts": proxyy.replace("\n", "")
+                   'http': "http://" + proxyy.replace("\n",""),
+                   'https': "http://" + proxyy.replace("\n","")
                }
-               print(proxyy)
                try:
-                   print(str(requests.get("https://api.ipify.org/", proxies=proxy_dict).content.decode()))
                    answer = requests.post('https://authserver.mojang.com/authenticate', data=request_body, headers=headers, proxies=proxy_dict, timeout=10).content
                    break
                except Exception as e:
-                   print(e)
-                   proxy.proxys.remove(proxy)
+                   #print(e)
+                   proxy.proxys.remove(proxyy)
                    print("Proxy removed cause it was shit.")
                    continue
 
@@ -71,7 +66,8 @@ def checkproxies(threads, timeout, proxyjudge):
     def proxy_checker(x):
         proxie = proxies[x].replace("\n", "")
         proxy_dict = {
-                  'http': proxie
+            'http': "http://" + proxie,
+            'https': "http://" + proxie
                 }
         try:
             r = requests.get(proxyjudge, proxies=proxy_dict, timeout=timeout).content.decode()

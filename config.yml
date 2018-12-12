@@ -18,7 +18,7 @@ checker:
     b_hypixel: True
     i_minlevel_hypixel: 15
   threads:
-    i_threads: 10
+    i_threads: 50
   proxy:
     b_proxy: True #if proxys should be used
     b_check: True #if proxys should be checked before using
