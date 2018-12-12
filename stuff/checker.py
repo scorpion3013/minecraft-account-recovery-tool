@@ -41,9 +41,10 @@ def account_login(email_username, password):
            while True:
                print("3")
 
-               proxyy = random.choice(proxy.proxys)
+               proxyy = str(random.choice(proxy.proxys))
                proxy_dict = {
-                   "http": proxyy
+                   "http": proxyy.replace("\n", ""),
+                   "htts": proxyy.replace("\n", "")
                }
                print(proxyy)
                try:
