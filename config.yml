@@ -1,0 +1,29 @@
+checker:
+  capes:
+    b_liquidbounce: False
+    b_optifine: True
+    b_labymod:  False
+    b_minecon:  True
+    b_5zig: False
+  hypixel:
+    i_method: 0
+    #0 = api
+    #1 = plank
+    b_check_api_keys: True
+    s_api_keys: 84848484|3242342
+  rank:
+    b_mineplex: True
+    b_hypixel:  True
+  level:
+    b_hypixel: True
+    i_minlevel_hypixel: 15
+  threads:
+    i_threads: 50
+  proxy:
+    b_proxy: True #if proxys should be used
+    b_check: True #if proxys should be checked before using
+proxy_checker:
+  i_timeout: 5000 #Milleseconds
+  i_threads: 200
+  i_recheck_amount: 0 #0 to disable this feature | not made yet omegalul
+  s_proxy_judge: 'http://azenv.net/'
