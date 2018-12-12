@@ -8,6 +8,7 @@ Place your accounts in the "accounts.txt" file. Format is "email:password"
 Place your proxies in the "proxies.txt" file. Format is "ip:port". (Auth proxies, Rotating proxies are not supported yet.)
 Features: 
 
+
           Multi-Threading.
           HTTP Proxy Support.
           Cape checking for: labymod, 5zig mod, optifine, minecon, liquidbounce.
