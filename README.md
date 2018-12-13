@@ -1,6 +1,7 @@
 # minecraft-account-recovery-tool
 Codename: mart
 
+NOTICE: After the current issues are added/fixed this project will be closed and made to a multi-account-recovery-tool (which means support for more websites will be added)
 This is a tool to recover your minecraft account made in python 3.6
 x
 To start the checker -> main.py
