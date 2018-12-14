@@ -115,8 +115,7 @@ def check(x):
             "MART by scorpion3013 | " +
             "Combos: " + str(len(account_file_lines)) +
             " | Working: " + str(Counter.valid) +
-            " | Bad: " + str(Counter.invalid) +
-            " | Proxies alive: " + str(len(checker.proxy.working)))
+            " | Bad: " + str(Counter.invalid)) #+ " | Proxies alive: " + str(len(checker.proxy.working)))
 
 
 def theads_two(numbers, threads=7):
