@@ -26,6 +26,7 @@ Features:
           Checking if an username is three letters or shorter.
           Checking if an account has a rank on Hypixel and which level the account is.
           Checking if an account has a rank on Mineplex.
+          Checking if an account has a rank on HiveMC.
         
 
 Todolist: ban checker, more special_checks
