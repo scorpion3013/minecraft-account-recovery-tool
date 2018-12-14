@@ -89,3 +89,17 @@ def mineplex_rank_check(username):
                 return match
     except:
         return False
+
+def hivemc_rank_check(username):
+    try:
+        response = str(requests.get('https://www.hivemc.com/player/' + username).text)
+        if response.__contains__("That player cannot be found."):
+            return False
+        else:
+            match = "{group}".format(group=re.search(r"<p class=\"rank.*\">(.*)<\/p>", response).group(1))
+            if match.lower() == "Regular":
+                return False
+            else:
+                return match
+    except:
+        return False

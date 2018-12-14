@@ -18,6 +18,7 @@ class Checker:
     class Rank:
         mineplex_rank = bool(config['checker']['rank']['b_mineplex'])
         hypixel_rank = bool(config['checker']['rank']['b_hypixel'])
+        hivemc_rank = bool(config['checker']['rank']['b_hivemc'])
 
     class Level:
         hypixel_level = bool(config['checker']['level']['b_hypixel'])

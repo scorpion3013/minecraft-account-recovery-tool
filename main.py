@@ -30,6 +30,7 @@ class Counter:
     hypixellevel = 0
     shortname = 0
     mineplexrank = 0
+    hivemcrank = 0
 
 checker.proxy_getter()
 
@@ -69,6 +70,12 @@ def check(x):
                 if mp_rank is not False:
                     open(FOLDER_PATH + os.sep + 'mineplexRank.txt', 'a').write(
                         account_file_lines[x] + ' Rank: ' + str(mp_rank) + "\n")
+                    Counter.mineplexrank += 1
+            if Checker.Rank.hivemc_rank:
+                hivemc_rank = hivemc_rank_check(username)
+                if hivemc_rank is not False:
+                    open(FOLDER_PATH + os.sep + 'hivemcrank.txt', 'a').write(
+                        account_file_lines[x] + ' Rank: ' + str(hivemc_rank) + "\n")
                     Counter.mineplexrank += 1
             if bool(answer["user"]["secured"]) is False:
                 open(FOLDER_PATH + os.sep + 'unsecure.txt', 'a').write(account_file_lines[x] + "\n")
@@ -112,8 +119,6 @@ def check(x):
             " | Proxies alive: " + str(len(checker.proxy.working)))
 
 
-
-
 def theads_two(numbers, threads=7):
     pool = ThreadPool(threads)
     results = pool.map(check, numbers)
@@ -129,12 +134,19 @@ if __name__ == "__main__":
 
     threads_one = theads_two(countt, threads)
 
-Counter_list = [str(Counter.valid) + ' Valid accounts',str(Counter.invalid) + ' Invalid accounts',
-             str(Counter.insecure) + ' Unsecure accounts',str(Counter.minecon) + ' Minecon-capes',
-             str(Counter.fivezig) + ' 5zig-capes',str(Counter.optifine) + ' Optifine-capes',
-             str(Counter.labymod) + ' Labymod-capes',str(Counter.liquidbounce) + ' LiquidBounce-capes',
-             str(Counter.hypixelrank) + ' Hypixel-Rank accounts',str(Counter.hypixellevel) + ' Hypixel-Level accounts',
-             str(Counter.mineplexrank) + ' Mineplex-Rank accounts',str(Counter.shortname) + ' Short-name accounts']
+Counter_list = [str(Counter.valid) + ' Valid accounts',
+                str(Counter.invalid) + ' Invalid accounts',
+             str(Counter.insecure) + ' Unsecure accounts',
+                str(Counter.minecon) + ' Minecon-capes',
+             str(Counter.fivezig) + ' 5zig-capes',
+                str(Counter.optifine) + ' Optifine-capes',
+             str(Counter.labymod) + ' Labymod-capes',
+                str(Counter.liquidbounce) + ' LiquidBounce-capes',
+             str(Counter.hypixelrank) + ' Hypixel-Rank accounts',
+                str(Counter.hypixellevel) + ' Hypixel-Level accounts',
+             str(Counter.mineplexrank) + ' Mineplex-Rank accounts',
+                str(Counter.hivemcrank) + ' Hivemc-rank accounts',
+                str(Counter.shortname) + ' Short-name accounts']
 
 print('\nResult:\n')
 
