@@ -9,6 +9,7 @@ To start the checker -> main.py
 Place your accounts in the "accounts.txt" file. Format is "email:password"
 Place your proxies in the "proxies.txt" file. Format is "ip:port". (Auth proxies, Rotating proxies are not supported yet.)
 
+Mart vs eggcrack
 ![mart vs eggcrack](https://axolotl.club/6rUP3L93.png?key=XZDF3L9Rkh0AbN)
 
 Only checking for valids account -> mart wins in speed and accuracy.
