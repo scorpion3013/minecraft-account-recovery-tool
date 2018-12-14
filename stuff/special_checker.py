@@ -97,7 +97,7 @@ def hivemc_rank_check(username):
             return False
         else:
             match = "{group}".format(group=re.search(r"<p class=\"rank.*\">(.*)<\/p>", response).group(1))
-            if match.lower() == "Regular":
+            if match.lower() == "regular":
                 return False
             else:
                 return match

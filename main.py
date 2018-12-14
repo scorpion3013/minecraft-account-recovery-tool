@@ -76,7 +76,7 @@ def check(x):
                 if hivemc_rank is not False:
                     open(FOLDER_PATH + os.sep + 'hivemcrank.txt', 'a').write(
                         account_file_lines[x] + ' Rank: ' + str(hivemc_rank) + "\n")
-                    Counter.mineplexrank += 1
+                    Counter.hivemcrank += 1
             if bool(answer["user"]["secured"]) is False:
                 open(FOLDER_PATH + os.sep + 'unsecure.txt', 'a').write(account_file_lines[x] + "\n")
                 Counter.insecure += 1
