@@ -2,11 +2,20 @@
 Codename: mart
 
 NOTICE: After the current issues are added/fixed this project will be closed and made to a multi-account-recovery-tool (which means support for more websites will be added)
+
 This is a tool to recover your minecraft account made in python 3.6
 x
 To start the checker -> main.py
 Place your accounts in the "accounts.txt" file. Format is "email:password"
 Place your proxies in the "proxies.txt" file. Format is "ip:port". (Auth proxies, Rotating proxies are not supported yet.)
+
+mart vs eggcrack(popularest free tool atm) 
+![mart vs eggcrack](https://axolotl.club/6rUP3L93.png?key=XZDF3L9Rkh0AbN)
+
+Only checking for valids account -> mart wins in speed and accuracy.
+
+Notice: Having alot of extra checks enabled will slow mart down. (Cause the extra checks arent async yet)
+
 
 Features: 
 
