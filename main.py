@@ -35,6 +35,7 @@ class Counter:
 checker.proxy_getter()
 
 
+result = {}
 
 def check(x):
     if not account_file_lines[x].__contains__(':'):
@@ -49,6 +50,8 @@ def check(x):
             open(FOLDER_PATH + os.sep + 'working.txt', 'a').write(account_file_lines[x] + "\n")
             Counter.valid += 1
 
+            result[account_file_lines[x]] = {}
+            result[account_file_lines[x]]["username"] = username
             if Checker.Level.hypixel_level or Checker.Rank.hypixel_rank:
                 if Checker.Hypixel.method == 0:
                     hp = hypixel_check_api(username)
@@ -59,56 +62,67 @@ def check(x):
                     if hp[0] != 'False':
                         open(FOLDER_PATH + os.sep + 'hypixelRank.txt', 'a').write(
                             account_file_lines[x] + ' Rank: ' + hp[0] + "\n")
+                        result[account_file_lines[x]]["hypixelrank"] = hp[0]
                         Counter.hypixelrank += 1
                 if Checker.Level.hypixel_level:
                     if int(hp[1]) >= Checker.Level.hypixel_min_level and hp[1] != 0:
                         open(FOLDER_PATH + os.sep + 'hypixelLevel.txt', 'a').write(
                             account_file_lines[x] + ' Level: ' + str(hp[1]) + "\n")
+                        result[account_file_lines[x]]["hypixellevel"] = hp[1]
                         Counter.hypixellevel += 1
             if Checker.Rank.mineplex_rank:
                 mp_rank = mineplex_rank_check(username)
                 if mp_rank is not False:
                     open(FOLDER_PATH + os.sep + 'mineplexRank.txt', 'a').write(
                         account_file_lines[x] + ' Rank: ' + str(mp_rank) + "\n")
+                    result[account_file_lines[x]]["mineplexrank"] = mp_rank
                     Counter.mineplexrank += 1
             if Checker.Rank.hivemc_rank:
                 hivemc_rank = hivemc_rank_check(username)
                 if hivemc_rank is not False:
                     open(FOLDER_PATH + os.sep + 'hivemcrank.txt', 'a').write(
                         account_file_lines[x] + ' Rank: ' + str(hivemc_rank) + "\n")
+                    result[account_file_lines[x]]["hiverank"] = hivemc_rank
                     Counter.hivemcrank += 1
             if bool(answer["user"]["secured"]) is False:
                 open(FOLDER_PATH + os.sep + 'unsecure.txt', 'a').write(account_file_lines[x] + "\n")
+                result[account_file_lines[x]]["unsecure"] = True
                 Counter.insecure += 1
             if Checker.Cape.minecon:
                 if minecon_cape_request(uuid) is True:
                     open(FOLDER_PATH + os.sep + 'minecon.txt', 'a').write(account_file_lines[x] + "\n")
+                    result[account_file_lines[x]]["mineconcape"] = True
                     Counter.minecon += 1
             if Checker.Cape.fivezig:
                 if five_zig_cape_request(uuid) is True:
                     open(FOLDER_PATH + os.sep + '5zig.txt', 'a').write(account_file_lines[x] + "\n")
+                    result[account_file_lines[x]]["fivesigcape"] = True
                     Counter.fivezig += 1
             if Checker.Cape.optifine:
                 if optifine_cape_request(username) is True:
                     open(FOLDER_PATH + os.sep + 'optifine.txt', 'a').write(account_file_lines[x] + "\n")
+                    result[account_file_lines[x]]["optifinecape"] = True
                     Counter.optifine += 1
             if Checker.Cape.labymod:
                 if laby_mod_cape_request(uuid) is True:
                     open(FOLDER_PATH + os.sep + 'labymod.txt', 'a').write(account_file_lines[x] + "\n")
+                    result[account_file_lines[x]]["labymodcape"] = True
                     Counter.labymod += 1
             if Checker.Cape.liquidbounce:
                 if liquidbounce_cape_request(uuid) is True:
                     open(FOLDER_PATH + os.sep + 'liquidbounce.txt', 'a').write(account_file_lines[x] + "\n")
+                    result[account_file_lines[x]]["liquidbouncecape"] = True
                     Counter.liquidbounce += 1
             if under_four_character_long(username) is True:
                 open(FOLDER_PATH + os.sep + 'special_name.txt', 'a').write(account_file_lines[x] + "\n")
+                result[account_file_lines[x]]["specialname"] = True
                 Counter.shortname += 1
-            cprint("\nValid account " + username, "green")
+            print("\nValid account " + username)
         except:
             print(email_username)
             Counter.invalid += 1
     else:
-        cprint('\nInvalid account', "red")
+        print('\nInvalid account')
         Counter.invalid += 1
     if windows:
         ctypes.windll.kernel32.SetConsoleTitleW(
@@ -147,6 +161,8 @@ Counter_list = [str(Counter.valid) + ' Valid accounts',
                 str(Counter.hivemcrank) + ' Hivemc-rank accounts',
                 str(Counter.shortname) + ' Short-name accounts']
 
+json_data = json.dumps(result, sort_keys=True, indent=4)
+open(FOLDER_PATH + os.sep + 'accounts.json', 'a').write(json_data)
 print('\nResult:\n')
 
 for x in range(len(Counter_list) - 0):
