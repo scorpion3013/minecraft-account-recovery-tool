@@ -76,19 +76,21 @@ def hypixel_check_plank(username):
         return both
 
 
-def mineplex_rank_check(username):
+def mineplex_check(username):
+    both = ['False', '']
     try:
         response = str(requests.get('https://www.mineplex.com/players/' + username).text)
         if response.__contains__("That player cannot be found."):
-            return False
+            both[1] = 0
+            both[0] = 'False'
         else:
-            match = "{group}".format(group=re.search(r"Rank\(\'(.*)\'\)", response).group(1))
-            if match.lower() == "player":
-                return False
-            else:
-                return match
-    except:
-        return False
+            both[1] = re.search(r">Level (.*)<\/b>", response).group(1)
+            both[0] = re.search(r"Rank\(\'(.*)\'\)", response).group(1)
+            if both[0].lower() == "player":
+                both[0] = "False"
+        return both
+    except Exception as e:
+        return both
 
 def hivemc_rank_check(username):
     try:

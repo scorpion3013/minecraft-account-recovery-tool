@@ -30,6 +30,7 @@ class Counter:
     hypixellevel = 0
     shortname = 0
     mineplexrank = 0
+    mineplexlevel = 0
     hivemcrank = 0
 
 checker.proxy_getter()
@@ -51,7 +52,13 @@ def check(x):
             Counter.valid += 1
 
             result[account_file_lines[x]] = {}
+
             result[account_file_lines[x]]["username"] = username
+            result[account_file_lines[x]]["email"] = email_username
+            result[account_file_lines[x]]["password"] = password
+            result[account_file_lines[x]]["rank"] = {}
+            result[account_file_lines[x]]["level"] = {}
+            result[account_file_lines[x]]["cape"] = {}
             if Checker.Level.hypixel_level or Checker.Rank.hypixel_rank:
                 if Checker.Hypixel.method == 0:
                     hp = hypixel_check_api(username)
@@ -62,27 +69,39 @@ def check(x):
                     if hp[0] != 'False':
                         open(FOLDER_PATH + os.sep + 'hypixelRank.txt', 'a').write(
                             account_file_lines[x] + ' Rank: ' + hp[0] + "\n")
-                        result[account_file_lines[x]]["hypixelrank"] = hp[0]
+                        result[account_file_lines[x]]["rank"]["hypixelrank"] = hp[0]
                         Counter.hypixelrank += 1
                 if Checker.Level.hypixel_level:
-                    if int(hp[1]) >= Checker.Level.hypixel_min_level and hp[1] != 0:
-                        open(FOLDER_PATH + os.sep + 'hypixelLevel.txt', 'a').write(
-                            account_file_lines[x] + ' Level: ' + str(hp[1]) + "\n")
-                        result[account_file_lines[x]]["hypixellevel"] = hp[1]
-                        Counter.hypixellevel += 1
-            if Checker.Rank.mineplex_rank:
-                mp_rank = mineplex_rank_check(username)
-                if mp_rank is not False:
-                    open(FOLDER_PATH + os.sep + 'mineplexRank.txt', 'a').write(
-                        account_file_lines[x] + ' Rank: ' + str(mp_rank) + "\n")
-                    result[account_file_lines[x]]["mineplexrank"] = mp_rank
-                    Counter.mineplexrank += 1
+                    if int(hp[1]) != 0:
+                        if hp[1] >= Checker.Level.hypixel_min_level:
+                            open(FOLDER_PATH + os.sep + 'hypixelLevel.txt', 'a').write(
+                                account_file_lines[x] + ' Level: ' + str(hp[1]) + "\n")
+                            Counter.hypixellevel += 1
+                        result[account_file_lines[x]]["level"]["hypixellevel"] = hp[1]
+
+            if Checker.Level.mineplex_level or Checker.Rank.mineplex_rank:
+                mp = mineplex_check(username)
+
+                if Checker.Rank.mineplex_rank:
+                    if ((mp[0]) != 'False'):
+                        open(FOLDER_PATH + os.sep + 'mineplexRank.txt', 'a').write(
+                            account_file_lines[x] + ' Rank: ' + (mp[0]) + "\n")
+                        result[account_file_lines[x]]["rank"]["mineplexrank"] = (mp[0])
+                        Counter.mineplexrank += 1
+                if Checker.Level.mineplex_level:
+                    if int(mp[1]) != 0:
+                        if int(mp[1]) >= Checker.Level.mineplex_min_level:
+                            open(FOLDER_PATH + os.sep + 'mineplexLevel.txt', 'a').write(
+                                account_file_lines[x] + ' Level: ' + str(mp[1]) + "\n")
+                            Counter.mineplexlevel += 1
+                        result[account_file_lines[x]]["level"]["mineplexLevel"] = int(mp[1])
+
             if Checker.Rank.hivemc_rank:
                 hivemc_rank = hivemc_rank_check(username)
                 if hivemc_rank is not False:
                     open(FOLDER_PATH + os.sep + 'hivemcrank.txt', 'a').write(
                         account_file_lines[x] + ' Rank: ' + str(hivemc_rank) + "\n")
-                    result[account_file_lines[x]]["hiverank"] = hivemc_rank
+                    result[account_file_lines[x]]["rank"]["hiverank"] = hivemc_rank
                     Counter.hivemcrank += 1
             if bool(answer["user"]["secured"]) is False:
                 open(FOLDER_PATH + os.sep + 'unsecure.txt', 'a').write(account_file_lines[x] + "\n")
@@ -117,12 +136,13 @@ def check(x):
                 open(FOLDER_PATH + os.sep + 'special_name.txt', 'a').write(account_file_lines[x] + "\n")
                 result[account_file_lines[x]]["specialname"] = True
                 Counter.shortname += 1
-            print("\nValid account " + username)
-        except:
-            print(email_username)
+            cprint("Valid account " + username, "green")
+        except Exception as e:
+            print(e)
+            cprint(email_username + " " + username, "red")
             Counter.invalid += 1
     else:
-        print('\nInvalid account')
+        print('Invalid account')
         Counter.invalid += 1
     if windows:
         ctypes.windll.kernel32.SetConsoleTitleW(
@@ -161,7 +181,7 @@ Counter_list = [str(Counter.valid) + ' Valid accounts',
                 str(Counter.hivemcrank) + ' Hivemc-rank accounts',
                 str(Counter.shortname) + ' Short-name accounts']
 
-json_data = json.dumps(result, sort_keys=True, indent=4)
+json_data = json.dumps(result, sort_keys=False, indent=4)
 open(FOLDER_PATH + os.sep + 'accounts.json', 'a').write(json_data)
 print('\nResult:\n')
 

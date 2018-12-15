@@ -23,6 +23,8 @@ class Checker:
     class Level:
         hypixel_level = bool(config['checker']['level']['b_hypixel'])
         hypixel_min_level = int(config['checker']['level']['i_minlevel_hypixel'])
+        mineplex_level = bool(config['checker']['level']['b_mineplex'])
+        mineplex_min_level = int(config['checker']['level']['i_minlevel_mineplex'])
 
     class Threads:
         thread_amount = int(config['checker']['threads']['i_threads'])

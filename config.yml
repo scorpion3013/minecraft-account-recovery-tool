@@ -17,14 +17,16 @@ checker:
     b_hivemc: True
   level:
     b_hypixel: True
+    b_mineplex: True
     i_minlevel_hypixel: 15
+    i_minlevel_mineplex: 15
   threads:
-    i_threads: 300 #threads for account checking
+    i_threads: 800 #threads for account checking
   proxy:
-    b_proxy: True #if proxys should be used
-    b_check: True #if proxys should be checked before using
+    b_proxy: False #if proxys should be used
+    b_check: False #if proxys should be checked before using
 proxy_checker:
   i_timeout: 10000 #Milleseconds
-  i_threads: 800
+  i_threads: 1000
   i_recheck_amount: 0 #0 to disable this feature | not made yet omegalul
   s_proxy_judge: 'http://azenv.net/'
