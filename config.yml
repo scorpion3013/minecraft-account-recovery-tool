@@ -25,6 +25,7 @@ checker:
   proxy:
     b_proxy: False #if proxys should be used
     b_check: False #if proxys should be checked before using
+    b_use_transparent: true
 proxy_checker:
   i_timeout: 10000 #Milleseconds
   i_threads: 1000

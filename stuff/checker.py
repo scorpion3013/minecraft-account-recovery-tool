@@ -53,7 +53,7 @@ def account_login(email_username, password):
                    break
                except Exception as e:
                    #proxy.proxys.remove(proxyy)
-                   print("\nInvalid request, repeating.")
+                   #print("\nInvalid request, repeating.")
                    time.sleep(2)
                    continue
 
@@ -79,20 +79,25 @@ def checkproxies(threads, timeout, proxyjudge):
         if windows:
             ctypes.windll.kernel32.SetConsoleTitleW(
                 "MART by scorpion3013 | " +
-                "Proxies: " + str(len(proxies)) +
+                "Proxies left: " + str(len(proxies) - (len(proxy.working)+ proxy.invalid)) +
                 " | Working: " + str(len(proxy.working)) +
                 " | Bad: " + str(proxy.invalid))
         try:
             r = requests.get(proxyjudge, proxies=proxy_dict, timeout=timeout).content.decode()
             if r.__contains__(myip):
-                cprint("\n" + proxie + " Working but transparent", "yellow")
-                proxy.invalid = proxy.invalid + 1
+                if Checker.Proxy.use_transparent:
+                    proxy.working.append(proxies[x])
+                    cprint("" + proxie + " Working but transparent", "yellow")
+                else:
+                    proxy.invalid = proxy.invalid + 1
+                    cprint("" + proxie + " Working but transparent", "red")
+
 
             else:
-                cprint("\n" + proxie + " Working", "green")
+                cprint("" + proxie + " Working", "green")
                 proxy.working.append(proxies[x])
         except:
-            cprint("\n" + proxie + " Not Working", "red")
+            #cprint("\n" + proxie + " Not Working", "red")
             proxy.invalid = proxy.invalid + 1
 
     def theads_two(numbers, threads=threads):

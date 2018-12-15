@@ -32,6 +32,7 @@ class Checker:
     class Proxy:
         proxy = bool(config['checker']['proxy']['b_proxy'])
         proxy_check = bool(config['checker']['proxy']['b_check'])
+        use_transparent = bool(config['checker']['proxy']['b_use_transparent'])
 
 class ProxyChecker:
     class Settings:
