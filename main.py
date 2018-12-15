@@ -59,6 +59,16 @@ def check(x):
             result[account_file_lines[x]]["rank"] = {}
             result[account_file_lines[x]]["level"] = {}
             result[account_file_lines[x]]["cape"] = {}
+
+            if bool(answer["user"]["secured"]) is False:
+                open(FOLDER_PATH + os.sep + 'unsecure.txt', 'a').write(account_file_lines[x] + "\n")
+                result[account_file_lines[x]]["unsecure"] = True
+                Counter.insecure += 1
+
+            if under_four_character_long(username) is True:
+                open(FOLDER_PATH + os.sep + 'special_name.txt', 'a').write(account_file_lines[x] + "\n")
+                result[account_file_lines[x]]["specialname"] = True
+                Counter.shortname += 1
             if Checker.Level.hypixel_level or Checker.Rank.hypixel_rank:
                 if Checker.Hypixel.method == 0:
                     hp = hypixel_check_api(username)
@@ -94,7 +104,7 @@ def check(x):
                             open(FOLDER_PATH + os.sep + 'mineplexLevel.txt', 'a').write(
                                 account_file_lines[x] + ' Level: ' + str(mp[1]) + "\n")
                             Counter.mineplexlevel += 1
-                        result[account_file_lines[x]]["level"]["mineplexLevel"] = int(mp[1])
+                        result[account_file_lines[x]]["level"]["mineplexlevel"] = int(mp[1])
 
             if Checker.Rank.hivemc_rank:
                 hivemc_rank = hivemc_rank_check(username)
@@ -103,10 +113,7 @@ def check(x):
                         account_file_lines[x] + ' Rank: ' + str(hivemc_rank) + "\n")
                     result[account_file_lines[x]]["rank"]["hiverank"] = hivemc_rank
                     Counter.hivemcrank += 1
-            if bool(answer["user"]["secured"]) is False:
-                open(FOLDER_PATH + os.sep + 'unsecure.txt', 'a').write(account_file_lines[x] + "\n")
-                result[account_file_lines[x]]["unsecure"] = True
-                Counter.insecure += 1
+
             if Checker.Cape.minecon:
                 if minecon_cape_request(uuid) is True:
                     open(FOLDER_PATH + os.sep + 'minecon.txt', 'a').write(account_file_lines[x] + "\n")
@@ -132,17 +139,13 @@ def check(x):
                     open(FOLDER_PATH + os.sep + 'liquidbounce.txt', 'a').write(account_file_lines[x] + "\n")
                     result[account_file_lines[x]]["liquidbouncecape"] = True
                     Counter.liquidbounce += 1
-            if under_four_character_long(username) is True:
-                open(FOLDER_PATH + os.sep + 'special_name.txt', 'a').write(account_file_lines[x] + "\n")
-                result[account_file_lines[x]]["specialname"] = True
-                Counter.shortname += 1
+
             cprint("Valid account " + username, "green")
         except Exception as e:
-            print(e)
-            cprint(email_username + " " + username, "red")
+            cprint(email_username + " ", "red")
             Counter.invalid += 1
     else:
-        print('Invalid account')
+        cprint('Invalid account', "red")
         Counter.invalid += 1
     if windows:
         ctypes.windll.kernel32.SetConsoleTitleW(
@@ -178,6 +181,7 @@ Counter_list = [str(Counter.valid) + ' Valid accounts',
              str(Counter.hypixelrank) + ' Hypixel-Rank accounts',
                 str(Counter.hypixellevel) + ' Hypixel-Level accounts',
              str(Counter.mineplexrank) + ' Mineplex-Rank accounts',
+                str(Counter.mineplexlevel) + ' Mineplex-Level accounts',
                 str(Counter.hivemcrank) + ' Hivemc-rank accounts',
                 str(Counter.shortname) + ' Short-name accounts']
 
