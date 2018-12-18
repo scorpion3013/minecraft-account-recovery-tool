@@ -44,7 +44,7 @@ def check(x):
     email_username = account_file_lines[x].split(':', 1)[0]
     password = account_file_lines[x].split(':', 1)[1]
     answer = account_login(email_username=email_username, password=password)
-    if (str(answer).__contains__("paid")):
+    if (str(answer).__contains__("name")):
         try:
             uuid = answer["availableProfiles"][0]["id"]
             username = answer["availableProfiles"][0]["name"]
@@ -79,7 +79,7 @@ def check(x):
                     if hp[0] != 'False':
                         open(FOLDER_PATH + os.sep + 'hypixelRank.txt', 'a').write(
                             account_file_lines[x] + ' Rank: ' + hp[0] + "\n")
-                        result[account_file_lines[x]]["rank"]["hypixelrank"] = hp[0]
+                        result[account_file_lines[x]]["rank"]["hypixel"] = hp[0]
                         Counter.hypixelrank += 1
                 if Checker.Level.hypixel_level:
                     if int(hp[1]) != 0:
@@ -87,7 +87,7 @@ def check(x):
                             open(FOLDER_PATH + os.sep + 'hypixelLevel.txt', 'a').write(
                                 account_file_lines[x] + ' Level: ' + str(hp[1]) + "\n")
                             Counter.hypixellevel += 1
-                        result[account_file_lines[x]]["level"]["hypixellevel"] = hp[1]
+                        result[account_file_lines[x]]["level"]["hypixel"] = hp[1]
 
             if Checker.Level.mineplex_level or Checker.Rank.mineplex_rank:
                 mp = mineplex_check(username)
@@ -96,7 +96,7 @@ def check(x):
                     if ((mp[0]) != 'False'):
                         open(FOLDER_PATH + os.sep + 'mineplexRank.txt', 'a').write(
                             account_file_lines[x] + ' Rank: ' + (mp[0]) + "\n")
-                        result[account_file_lines[x]]["rank"]["mineplexrank"] = (mp[0])
+                        result[account_file_lines[x]]["rank"]["mineplex"] = (mp[0])
                         Counter.mineplexrank += 1
                 if Checker.Level.mineplex_level:
                     if int(mp[1]) != 0:
@@ -104,14 +104,14 @@ def check(x):
                             open(FOLDER_PATH + os.sep + 'mineplexLevel.txt', 'a').write(
                                 account_file_lines[x] + ' Level: ' + str(mp[1]) + "\n")
                             Counter.mineplexlevel += 1
-                        result[account_file_lines[x]]["level"]["mineplexlevel"] = int(mp[1])
+                        result[account_file_lines[x]]["level"]["mineplex"] = int(mp[1])
 
             if Checker.Rank.hivemc_rank:
                 hivemc_rank = hivemc_rank_check(username)
                 if hivemc_rank is not False:
                     open(FOLDER_PATH + os.sep + 'hivemcrank.txt', 'a').write(
                         account_file_lines[x] + ' Rank: ' + str(hivemc_rank) + "\n")
-                    result[account_file_lines[x]]["rank"]["hiverank"] = hivemc_rank
+                    result[account_file_lines[x]]["rank"]["hive"] = hivemc_rank
                     Counter.hivemcrank += 1
 
             if Checker.Cape.minecon:
@@ -142,11 +142,17 @@ def check(x):
 
             cprint("Valid account " + username, "green")
         except Exception as e:
-            print(e)
-            print(json.dumps(answer, sort_keys=False, indent=4))
-            cprint(email_username + " ", "red")
+            if Checker.debug:
+                print("ERROR")
+                print(json.dumps(answer, sort_keys=False, indent=4))
+                print(account_file_lines[x])
+                print(e)
             Counter.invalid += 1
     else:
+        if Checker.debug:
+            print("ELSE")
+            print(json.dumps(answer, sort_keys=False, indent=4))
+            print(account_file_lines[x])
         #cprint('Invalid account', "red")
         Counter.invalid += 1
     if windows:

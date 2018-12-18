@@ -12,6 +12,7 @@ def minecon_cape_request(UUID):
             return False
     except Exception as e:
         print(e)
+        return False
         pass
 
 def five_zig_cape_request(UUID):

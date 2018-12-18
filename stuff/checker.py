@@ -52,6 +52,9 @@ def account_login(email_username, password):
                    answer = requests.post('https://authserver.mojang.com/authenticate', data=request_body, headers=headers, proxies=proxy_dict, timeout=15).content
                    break
                except Exception as e:
+                   if Checker.debug:
+                       print(proxy)
+                       print(e)
                    #proxy.proxys.remove(proxyy)
                    #print("\nInvalid request, repeating.")
                    time.sleep(2)

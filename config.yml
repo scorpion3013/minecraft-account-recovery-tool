@@ -1,4 +1,5 @@
 checker:
+  b_debug: False
   capes:
     b_liquidbounce: False
     b_optifine: True
@@ -21,11 +22,11 @@ checker:
     i_minlevel_hypixel: 15
     i_minlevel_mineplex: 15
   threads:
-    i_threads: 800 #threads for account checking
+    i_threads: 700 #threads for account checking
   proxy:
-    b_proxy: False #if proxys should be used
-    b_check: False #if proxys should be checked before using
-    b_use_transparent: true
+    b_proxy: True #if proxys should be used
+    b_check: True #if proxys should be checked before using
+    b_use_transparent: true #If true you should also use a vpn
 proxy_checker:
   i_timeout: 10000 #Milleseconds
   i_threads: 1000
