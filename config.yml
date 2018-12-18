@@ -1,5 +1,5 @@
 checker:
-  b_debug: False
+  b_debug: False #normal user should keep it False
   capes:
     b_liquidbounce: False
     b_optifine: True

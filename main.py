@@ -65,7 +65,7 @@ def check(x):
                     Counter.insecure += 1
 
                 if under_four_character_long(username) is True:
-                    open(FOLDER_PATH + os.sep + 'special_name.txt', 'a').write(account_file_lines[x] + "\n")
+                    open(FOLDER_PATH + os.sep + 'special_name.txt', 'a').write(account_file_lines[x] + " Name: " + username + "\n")
                     result[account_file_lines[x]]["specialname"] = True
                     Counter.shortname += 1
                 if Checker.Level.hypixel_level or Checker.Rank.hypixel_rank:
