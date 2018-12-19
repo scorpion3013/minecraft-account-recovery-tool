@@ -54,8 +54,16 @@ def check(x):
     if account_file_lines[x].__contains__(':'):
         email_username = account_file_lines[x].split(':', 1)[0]
         password = account_file_lines[x].split(':', 1)[1]
-        answer = account_login(email_username=email_username, password=password)
-        if (str(answer).__contains__("name")):
+        check_counter = 0
+        answer = 'Invalid credentials'
+        while True:
+            if check_counter == Checker.check_amount:
+                break
+            answer = account_login(email_username=email_username, password=password)
+            if answer.__contains__('Invalid credentials'):
+                check_counter += 1
+
+        if str(answer).__contains__("name") and str(answer.__contains__("availableProfiles")):
             try:
                 uuid = answer["availableProfiles"][0]["id"]
                 username = answer["availableProfiles"][0]["name"]

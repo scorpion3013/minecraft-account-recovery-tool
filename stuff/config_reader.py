@@ -4,6 +4,7 @@ config = yaml.load(open('config.yml','r'))
 
 class Checker:
     debug = bool(config['checker']["b_debug"])
+    check_amount = int(config['config']['i_check_amount'])
     class Cape:
         liquidbounce = bool(config['checker']['capes']['b_liquidbounce'])
         optifine = bool(config['checker']['capes']['b_optifine'])

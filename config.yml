@@ -1,5 +1,6 @@
 checker:
   b_debug: False #normal user should keep it False
+  i_check_amount: 1 #needs to be 1 or higher
   capes:
     b_liquidbounce: False
     b_optifine: True
@@ -30,5 +31,4 @@ checker:
 proxy_checker:
   i_timeout: 10000 #Milleseconds
   i_threads: 1000
-  i_recheck_amount: 0 #0 to disable this feature | not made yet omegalul
   s_proxy_judge: 'http://azenv.net/'
