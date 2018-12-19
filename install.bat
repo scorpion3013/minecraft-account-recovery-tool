@@ -1,2 +1,2 @@
-python -m pip install -r requirements.txt
+py -m pip install -r stuff/requirements.txt
 pause
