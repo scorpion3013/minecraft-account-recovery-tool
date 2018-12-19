@@ -62,6 +62,8 @@ def check(x):
             answer = account_login(email_username=email_username, password=password)
             if answer.__contains__('Invalid credentials'):
                 check_counter += 1
+            else:
+                break
 
         if str(answer).__contains__("name") and str(answer.__contains__("availableProfiles")):
             try:
