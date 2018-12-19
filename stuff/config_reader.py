@@ -4,7 +4,7 @@ config = yaml.load(open('config.yml','r'))
 
 class Checker:
     debug = bool(config['checker']["b_debug"])
-    check_amount = int(config['config']['i_check_amount'])
+    check_amount = int(config['checker']['i_check_amount'])
     class Cape:
         liquidbounce = bool(config['checker']['capes']['b_liquidbounce'])
         optifine = bool(config['checker']['capes']['b_optifine'])
@@ -40,5 +40,4 @@ class ProxyChecker:
     class Settings:
         timeout = int(config['proxy_checker']['i_timeout'])
         thread_amount = int(config['proxy_checker']['i_threads'])
-        recheck_amount = int(config['proxy_checker']['i_recheck_amount'])
         proxy_judge = str(config['proxy_checker']['s_proxy_judge'])
