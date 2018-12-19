@@ -57,12 +57,16 @@ def check(x):
         check_counter = 0
         answer = 'Invalid credentials'
         while True:
-            if check_counter == Checker.check_amount:
-                break
-            answer = account_login(email_username=email_username, password=password)
-            if answer.__contains__('Invalid credentials'):
-                check_counter += 1
+            if check_counter != Checker.check_amount:
+                answer = account_login(email_username=email_username, password=password)
+                print(answer)
+                if "errorMessage" in answer:
+                    check_counter = check_counter + 1
+                else:
+                    break
+                    #account was valid
             else:
+                print(answer)
                 break
 
         if str(answer).__contains__("name") and str(answer.__contains__("availableProfiles")):
