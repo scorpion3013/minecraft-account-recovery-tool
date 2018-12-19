@@ -11,8 +11,8 @@ gitversion = requests.get(url="https://raw.githubusercontent.com/scorpion3013/mi
 yourversion = open(BASIC_PATH + '/stuff/version.txt').readline()
 if gitversion != yourversion:
     print("Your version is outdated.")
-    print("Your version: " + yourversion)
-    print("Latest version: " + gitversion)
+    print("Your version: " + yourversion.replace("\n", ""))
+    print("Latest version: " + gitversion.replace("\n", ""))
     print("https://github.com/scorpion3013/minecraft-account-recovery-tool/")
     print("Starting anyways in 10 seconds")
     time.sleep(10)
