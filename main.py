@@ -7,6 +7,18 @@ from multiprocessing.dummy import Pool as ThreadPool
 from pyfiglet import Figlet
 from termcolor import colored
 
+gitversion = requests.get(url="https://raw.githubusercontent.com/scorpion3013/minecraft-account-recovery-tool/master/stuff/version.txt").content.decode()
+yourversion = open(BASIC_PATH + '/stuff/version.txt').readline()
+if gitversion != yourversion:
+    print("Your version is outdated.")
+    print("Your version: " + yourversion)
+    print("Latest version: " + gitversion)
+    print("https://github.com/scorpion3013/minecraft-account-recovery-tool/")
+    print("Starting anyways in 10 seconds")
+    time.sleep(10)
+
+
+
 import platform
 from stuff import checker
 create_files()
