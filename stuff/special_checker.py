@@ -1,8 +1,19 @@
 import json
 import math
+import random
 import re
 
 import requests
+
+from stuff.file_creator import BASIC_PATH
+
+
+def remove_empty_lines_and_newlines(listt):
+
+    for i in range(0, len(listt)):
+        listt[i] = listt[i].replace("\n", "")
+    list(filter(None, listt))
+    return listt
 
 
 def under_four_character_long(username):
@@ -12,11 +23,19 @@ def under_four_character_long(username):
         return False
 
 
+class Keys:
+    hypixelkeys = remove_empty_lines_and_newlines(open(BASIC_PATH + "/hypixel_api_keys.txt").readlines())
+
+
+
+
+
 def hypixel_check_api(username):
     both = ['', '']
     try:
+        api_key = str(random.choice(Keys.hypixelkeys))
         request_response = requests.get(
-            'https://api.hypixel.net/player?key=79326ca4-54b2-4a8a-a5b4-d9ee111f674b&name=' + username).content
+            'https://api.hypixel.net/player?key=' + api_key + "&name=" + username).content
         answer_json = json.loads(request_response)
         rank = ''
         level = ''

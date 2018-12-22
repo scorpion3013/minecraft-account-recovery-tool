@@ -15,7 +15,6 @@ class Checker:
     class Hypixel:
         method = int(config['checker']['hypixel']['i_method'])
         check_api_keys = bool(config['checker']['hypixel']['b_check_api_keys'])
-        api_keys = str(config['checker']['hypixel']['s_api_keys'])
 
     class Rank:
         mineplex_rank = bool(config['checker']['rank']['b_mineplex'])

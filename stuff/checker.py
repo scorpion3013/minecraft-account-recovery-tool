@@ -53,7 +53,7 @@ def account_login(email_username, password):
            answer = requests.post('https://authserver.mojang.com/authenticate', data=request_body, headers=headers).content
        else:
            while True:
-               proxyy = str(proxy.proxys[random.randrange(0, len(proxy.proxys), 1)]).replace("\n", "")
+               proxyy = str(random.choice(proxy.proxys)).replace("\n", "")
 
                if Checker.Proxy.type.lower() == "http" or Checker.Proxy.type.lower() == "https":
                    proxy_dict = {

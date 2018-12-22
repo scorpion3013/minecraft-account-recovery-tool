@@ -9,13 +9,17 @@ print("Contact: www.scorpion3013.xyz")
 time.sleep(5)
 gitversion = requests.get(url="https://raw.githubusercontent.com/scorpion3013/minecraft-account-recovery-tool/master/stuff/version.txt").content.decode()
 yourversion = open(BASIC_PATH + '/stuff/version.txt').readline()
-if gitversion != yourversion:
-    print("Your version is outdated.")
-    print("Your version: " + yourversion.replace("\n", ""))
-    print("Latest version: " + gitversion.replace("\n", ""))
-    print("https://github.com/scorpion3013/minecraft-account-recovery-tool/")
-    print("Starting anyways in 10 seconds")
-    time.sleep(10)
+try:
+    if gitversion != yourversion:
+        print("Your version is outdated.")
+        print("Your version: " + yourversion.replace("\n", ""))
+        print("Latest version: " + gitversion.replace("\n", ""))
+        print("https://github.com/scorpion3013/minecraft-account-recovery-tool/")
+        print("Starting anyways in 10 seconds")
+        time.sleep(10)
+except:
+    pass
+
 
 
 
