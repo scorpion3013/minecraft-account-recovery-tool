@@ -16,3 +16,7 @@ proxies1\.txt
 proxies\.txt
 
 test\.py
+
+dist/
+
+build/

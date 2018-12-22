@@ -7,8 +7,8 @@ from stuff.special_checker import *
 print("Made by scorpion3013")
 print("Contact: www.scorpion3013.xyz")
 time.sleep(5)
-gitversion = requests.get(url="https://raw.githubusercontent.com/scorpion3013/minecraft-account-recovery-tool/master/stuff/version.txt").content.decode()
-yourversion = open(BASIC_PATH + '/stuff/version.txt').readline()
+gitversion = requests.get(url="https://raw.githubusercontent.com/scorpion3013/minecraft-account-recovery-tool/master/stuff/version.txt").content.decode().replace("\n","")
+yourversion = "1.2.0"
 try:
     if gitversion != yourversion:
         print("Your version is outdated.")
