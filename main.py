@@ -3,18 +3,25 @@ from stuff.checker import *
 from stuff.config_reader import *
 from stuff.file_creator import *
 from stuff.special_checker import *
+import platform
 
-print("Made by scorpion3013")
+yourversion = "1.2.0"
+
+if platform.system() == "Windows":
+    import ctypes
+    windows = True
+    ctypes.windll.kernel32.SetConsoleTitleW("MART by scorpion3013 | version " + yourversion)
+
 print("Contact: www.scorpion3013.xyz")
 time.sleep(5)
 gitversion = requests.get(url="https://raw.githubusercontent.com/scorpion3013/minecraft-account-recovery-tool/master/stuff/version.txt").content.decode().replace("\n","")
-yourversion = "1.2.0"
+
 try:
     if gitversion != yourversion:
         print("Your version is outdated.")
         print("Your version: " + yourversion.replace("\n", ""))
         print("Latest version: " + gitversion.replace("\n", ""))
-        print("https://github.com/scorpion3013/minecraft-account-recovery-tool/")
+        print("https://github.com/scorpion3013/minecraft-account-recovery-tool/releases")
         print("Starting anyways in 10 seconds")
         time.sleep(10)
 except:
@@ -23,15 +30,11 @@ except:
 
 
 
-import platform
 from stuff import checker
 create_files()
 account_file_lines = open(BASIC_PATH + os.sep + 'accounts.txt').read().split('\n')
 threads = Checker.Threads.thread_amount
 windows = False
-if platform.system() == "Windows":
-    import ctypes
-    windows = True
 
 class Counter:
     valid = 0
