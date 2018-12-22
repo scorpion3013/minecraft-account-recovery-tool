@@ -24,10 +24,10 @@ checker:
   threads:
     i_threads: 400 #threads for account checking
   proxy:
-    b_proxy: False #if proxies should be used
-    b_check: False #if proxies should be checked before using
+    b_proxy: True #if proxies should be used
+    b_check: True #if proxies should be checked before using
     s_proxy_type: 'http' #proxy types: http | https | socks4 | socks5
-    b_use_transparent: true #If true you should also use a vpn
+    b_use_transparent: True #If true you should also use a vpn
     b_use_api: false # if false it will use the proxies.txt | if true it will use the api link
     s_api_link: 'api.example.net/uiphdf12iu4'
 proxy_checker:

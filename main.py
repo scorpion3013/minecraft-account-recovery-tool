@@ -1,16 +1,19 @@
+import platform
+
 from stuff.cape_checker import *
 from stuff.checker import *
 from stuff.config_reader import *
 from stuff.file_creator import *
 from stuff.special_checker import *
-import platform
 
-yourversion = "1.2.0"
+yourversion = "1.2.1"
 
 if platform.system() == "Windows":
     import ctypes
     windows = True
     ctypes.windll.kernel32.SetConsoleTitleW("MART by scorpion3013 | version " + yourversion)
+else:
+    print("Oh, You are not on Windows -> Turnig off title bar status changer")
 
 print("Contact: www.scorpion3013.xyz")
 time.sleep(5)
@@ -34,7 +37,6 @@ from stuff import checker
 create_files()
 account_file_lines = open(BASIC_PATH + os.sep + 'accounts.txt').read().split('\n')
 threads = Checker.Threads.thread_amount
-windows = False
 
 class Counter:
     valid = 0
@@ -80,7 +82,7 @@ def check(x):
                 username = answer["availableProfiles"][0]["name"]
                 open(FOLDER_PATH + os.sep + 'working.txt', 'a').write(account_file_lines[x] + "\n")
                 Counter.valid += 1
-
+                cprint("Valid account " + username, "green")
                 result[account_file_lines[x]] = {}
 
                 result[account_file_lines[x]]["username"] = username
@@ -170,7 +172,6 @@ def check(x):
                         result[account_file_lines[x]]["liquidbouncecape"] = True
                         Counter.liquidbounce += 1
 
-                cprint("Valid account " + username, "green")
             except Exception as e:
                 if Checker.debug:
                     print("ERROR")
@@ -185,15 +186,15 @@ def check(x):
                 print(account_file_lines[x])
             #cprint('Invalid account', "red")
             Counter.invalid += 1
-        if windows:
-            ctypes.windll.kernel32.SetConsoleTitleW(
-                "MART by scorpion3013 | " +
-                "Combos left: " + str(len(account_file_lines) - (Counter.valid + Counter.invalid)) +
-                " | Working: " + str(Counter.valid) +
-                " | Bad: " + str(Counter.invalid)) #+ " | Proxies alive: " + str(len(checker.proxy.working)))
     else:
         print("INVALID COMBO")
         Counter.invalid += 1
+    if windows:
+        ctypes.windll.kernel32.SetConsoleTitleW(
+            "MART by scorpion3013 | " +
+            "Combos left: " + str(len(account_file_lines) - (Counter.valid + Counter.invalid)) +
+            " | Working: " + str(Counter.valid) +
+            " | Bad: " + str(Counter.invalid))  # + " | Proxies alive: " + str(len(checker.proxy.working)))
 
 
 def theads_two(numbers, threads=7):

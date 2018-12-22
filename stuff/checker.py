@@ -1,3 +1,4 @@
+import ctypes
 import json
 import platform
 import random
@@ -84,11 +85,13 @@ def account_login(email_username, password):
 
 def checkproxies(proxies ,threads, timeout, proxyjudge):
     myip = str(requests.get("https://api.ipify.org/").content.decode())
-    windows = False
 
     if platform.system() == "Windows":
-        import ctypes
         windows = True
+    else:
+        windows = False
+        print("Oh, You are not on Windows -> Turnig off title bar status changer")
+
     def proxy_checker(x):
         proxie = proxies[x].replace("\n", "")
 
@@ -103,12 +106,7 @@ def checkproxies(proxies ,threads, timeout, proxyjudge):
                 'https': Checker.Proxy.type.lower() + "://" + proxie
             }
 
-        if windows:
-            ctypes.windll.kernel32.SetConsoleTitleW(
-                "MART by scorpion3013 | " +
-                "Proxies left: " + str(len(proxies) - (len(proxy.working)+ proxy.invalid)) +
-                " | Working: " + str(len(proxy.working)) +
-                " | Bad: " + str(proxy.invalid))
+
         try:
             r = requests.get(proxyjudge, proxies=proxy_dict, timeout=timeout).content.decode()
             if r.__contains__(myip):
@@ -126,6 +124,12 @@ def checkproxies(proxies ,threads, timeout, proxyjudge):
         except:
             #cprint("\n" + proxie + " Not Working", "red")
             proxy.invalid = proxy.invalid + 1
+        if windows:
+            ctypes.windll.kernel32.SetConsoleTitleW(
+                "MART by scorpion3013 | " +
+                "Proxies left: " + str(len(proxies) - (len(proxy.working) + proxy.invalid)) +
+                " | Working: " + str(len(proxy.working)) +
+                " | Bad: " + str(proxy.invalid))
 
     def theads_two(numbers, threads=threads):
         pool = ThreadPool(threads)

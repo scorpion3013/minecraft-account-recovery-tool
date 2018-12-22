@@ -20,3 +20,5 @@ test\.py
 dist/
 
 build/
+
+*.spec
