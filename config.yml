@@ -11,8 +11,7 @@ checker:
     i_method: 0
     #0 = api
     #1 = plank
-    b_check_api_keys: True
-    s_api_keys: 84848484|3242342 #not working atm
+    b_check_api_keys: True #not made atm
   rank:
     b_mineplex: True
     b_hypixel:  True
@@ -25,8 +24,8 @@ checker:
   threads:
     i_threads: 400 #threads for account checking
   proxy:
-    b_proxy: True #if proxys should be used
-    b_check: True #if proxys should be checked before using
+    b_proxy: False #if proxies should be used
+    b_check: False #if proxies should be checked before using
     s_proxy_type: 'http' #proxy types: http | https | socks4 | socks5
     b_use_transparent: true #If true you should also use a vpn
     b_use_api: false # if false it will use the proxies.txt | if true it will use the api link
