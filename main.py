@@ -1,5 +1,3 @@
-import platform
-
 from stuff.cape_checker import *
 from stuff.checker import *
 from stuff.config_reader import *
@@ -92,86 +90,90 @@ def check(x):
                 result[account_file_lines[x]]["level"] = {}
                 result[account_file_lines[x]]["cape"] = {}
 
-                if bool(answer["user"]["secured"]) is False:
-                    open(FOLDER_PATH + os.sep + 'unsecure.txt', 'a').write(account_file_lines[x] + "\n")
-                    result[account_file_lines[x]]["unsecure"] = True
-                    Counter.insecure += 1
+                try:
+                    if bool(answer["user"]["secured"]) is False:
+                        open(FOLDER_PATH + os.sep + 'unsecure.txt', 'a').write(account_file_lines[x] + "\n")
+                        result[account_file_lines[x]]["unsecure"] = True
+                        Counter.insecure += 1
+                except:
+                    pass
+                try:
+                    if under_four_character_long(username) is True:
+                        open(FOLDER_PATH + os.sep + 'special_name.txt', 'a').write(account_file_lines[x] + " Name: " + username + "\n")
+                        result[account_file_lines[x]]["specialname"] = True
+                        Counter.shortname += 1
+                    if Checker.Level.hypixel_level or Checker.Rank.hypixel_rank:
+                        if Checker.Hypixel.method == 0:
+                            hp = hypixel_check_api(username)
+                        else:
+                            hp = hypixel_check_plank(username)
 
-                if under_four_character_long(username) is True:
-                    open(FOLDER_PATH + os.sep + 'special_name.txt', 'a').write(account_file_lines[x] + " Name: " + username + "\n")
-                    result[account_file_lines[x]]["specialname"] = True
-                    Counter.shortname += 1
-                if Checker.Level.hypixel_level or Checker.Rank.hypixel_rank:
-                    if Checker.Hypixel.method == 0:
-                        hp = hypixel_check_api(username)
-                    else:
-                        hp = hypixel_check_plank(username)
+                        if Checker.Rank.hypixel_rank:
+                            if hp[0] != 'False':
+                                open(FOLDER_PATH + os.sep + 'hypixelRank.txt', 'a').write(
+                                    account_file_lines[x] + ' Rank: ' + hp[0] + "\n")
+                                result[account_file_lines[x]]["rank"]["hypixel"] = hp[0]
+                                Counter.hypixelrank += 1
+                        if Checker.Level.hypixel_level:
+                            if int(hp[1]) != 0:
+                                if hp[1] >= Checker.Level.hypixel_min_level:
+                                    open(FOLDER_PATH + os.sep + 'hypixelLevel.txt', 'a').write(
+                                        account_file_lines[x] + ' Level: ' + str(hp[1]) + "\n")
+                                    Counter.hypixellevel += 1
+                                result[account_file_lines[x]]["level"]["hypixel"] = hp[1]
 
-                    if Checker.Rank.hypixel_rank:
-                        if hp[0] != 'False':
-                            open(FOLDER_PATH + os.sep + 'hypixelRank.txt', 'a').write(
-                                account_file_lines[x] + ' Rank: ' + hp[0] + "\n")
-                            result[account_file_lines[x]]["rank"]["hypixel"] = hp[0]
-                            Counter.hypixelrank += 1
-                    if Checker.Level.hypixel_level:
-                        if int(hp[1]) != 0:
-                            if hp[1] >= Checker.Level.hypixel_min_level:
-                                open(FOLDER_PATH + os.sep + 'hypixelLevel.txt', 'a').write(
-                                    account_file_lines[x] + ' Level: ' + str(hp[1]) + "\n")
-                                Counter.hypixellevel += 1
-                            result[account_file_lines[x]]["level"]["hypixel"] = hp[1]
+                    if Checker.Level.mineplex_level or Checker.Rank.mineplex_rank:
+                        mp = mineplex_check(username)
 
-                if Checker.Level.mineplex_level or Checker.Rank.mineplex_rank:
-                    mp = mineplex_check(username)
+                        if Checker.Rank.mineplex_rank:
+                            if ((mp[0]) != 'False'):
+                                open(FOLDER_PATH + os.sep + 'mineplexRank.txt', 'a').write(
+                                    account_file_lines[x] + ' Rank: ' + (mp[0]) + "\n")
+                                result[account_file_lines[x]]["rank"]["mineplex"] = (mp[0])
+                                Counter.mineplexrank += 1
+                        if Checker.Level.mineplex_level:
+                            if int(mp[1]) != 0:
+                                if int(mp[1]) >= Checker.Level.mineplex_min_level:
+                                    open(FOLDER_PATH + os.sep + 'mineplexLevel.txt', 'a').write(
+                                        account_file_lines[x] + ' Level: ' + str(mp[1]) + "\n")
+                                    Counter.mineplexlevel += 1
+                                result[account_file_lines[x]]["level"]["mineplex"] = int(mp[1])
 
-                    if Checker.Rank.mineplex_rank:
-                        if ((mp[0]) != 'False'):
-                            open(FOLDER_PATH + os.sep + 'mineplexRank.txt', 'a').write(
-                                account_file_lines[x] + ' Rank: ' + (mp[0]) + "\n")
-                            result[account_file_lines[x]]["rank"]["mineplex"] = (mp[0])
-                            Counter.mineplexrank += 1
-                    if Checker.Level.mineplex_level:
-                        if int(mp[1]) != 0:
-                            if int(mp[1]) >= Checker.Level.mineplex_min_level:
-                                open(FOLDER_PATH + os.sep + 'mineplexLevel.txt', 'a').write(
-                                    account_file_lines[x] + ' Level: ' + str(mp[1]) + "\n")
-                                Counter.mineplexlevel += 1
-                            result[account_file_lines[x]]["level"]["mineplex"] = int(mp[1])
+                    if Checker.Rank.hivemc_rank:
+                        hivemc_rank = hivemc_rank_check(username)
+                        if hivemc_rank is not False:
+                            open(FOLDER_PATH + os.sep + 'hivemcrank.txt', 'a').write(
+                                account_file_lines[x] + ' Rank: ' + str(hivemc_rank) + "\n")
+                            result[account_file_lines[x]]["rank"]["hive"] = hivemc_rank
+                            Counter.hivemcrank += 1
 
-                if Checker.Rank.hivemc_rank:
-                    hivemc_rank = hivemc_rank_check(username)
-                    if hivemc_rank is not False:
-                        open(FOLDER_PATH + os.sep + 'hivemcrank.txt', 'a').write(
-                            account_file_lines[x] + ' Rank: ' + str(hivemc_rank) + "\n")
-                        result[account_file_lines[x]]["rank"]["hive"] = hivemc_rank
-                        Counter.hivemcrank += 1
-
-                if Checker.Cape.minecon:
-                    if minecon_cape_request(uuid) is True:
-                        open(FOLDER_PATH + os.sep + 'minecon.txt', 'a').write(account_file_lines[x] + "\n")
-                        result[account_file_lines[x]]["mineconcape"] = True
-                        Counter.minecon += 1
-                if Checker.Cape.fivezig:
-                    if five_zig_cape_request(uuid) is True:
-                        open(FOLDER_PATH + os.sep + '5zig.txt', 'a').write(account_file_lines[x] + "\n")
-                        result[account_file_lines[x]]["fivesigcape"] = True
-                        Counter.fivezig += 1
-                if Checker.Cape.optifine:
-                    if optifine_cape_request(username) is True:
-                        open(FOLDER_PATH + os.sep + 'optifine.txt', 'a').write(account_file_lines[x] + "\n")
-                        result[account_file_lines[x]]["optifinecape"] = True
-                        Counter.optifine += 1
-                if Checker.Cape.labymod:
-                    if laby_mod_cape_request(uuid) is True:
-                        open(FOLDER_PATH + os.sep + 'labymod.txt', 'a').write(account_file_lines[x] + "\n")
-                        result[account_file_lines[x]]["labymodcape"] = True
-                        Counter.labymod += 1
-                if Checker.Cape.liquidbounce:
-                    if liquidbounce_cape_request(uuid) is True:
-                        open(FOLDER_PATH + os.sep + 'liquidbounce.txt', 'a').write(account_file_lines[x] + "\n")
-                        result[account_file_lines[x]]["liquidbouncecape"] = True
-                        Counter.liquidbounce += 1
-
+                    if Checker.Cape.minecon:
+                        if minecon_cape_request(uuid) is True:
+                            open(FOLDER_PATH + os.sep + 'minecon.txt', 'a').write(account_file_lines[x] + "\n")
+                            result[account_file_lines[x]]["mineconcape"] = True
+                            Counter.minecon += 1
+                    if Checker.Cape.fivezig:
+                        if five_zig_cape_request(uuid) is True:
+                            open(FOLDER_PATH + os.sep + '5zig.txt', 'a').write(account_file_lines[x] + "\n")
+                            result[account_file_lines[x]]["fivesigcape"] = True
+                            Counter.fivezig += 1
+                    if Checker.Cape.optifine:
+                        if optifine_cape_request(username) is True:
+                            open(FOLDER_PATH + os.sep + 'optifine.txt', 'a').write(account_file_lines[x] + "\n")
+                            result[account_file_lines[x]]["optifinecape"] = True
+                            Counter.optifine += 1
+                    if Checker.Cape.labymod:
+                        if laby_mod_cape_request(uuid) is True:
+                            open(FOLDER_PATH + os.sep + 'labymod.txt', 'a').write(account_file_lines[x] + "\n")
+                            result[account_file_lines[x]]["labymodcape"] = True
+                            Counter.labymod += 1
+                    if Checker.Cape.liquidbounce:
+                        if liquidbounce_cape_request(uuid) is True:
+                            open(FOLDER_PATH + os.sep + 'liquidbounce.txt', 'a').write(account_file_lines[x] + "\n")
+                            result[account_file_lines[x]]["liquidbouncecape"] = True
+                            Counter.liquidbounce += 1
+                except:
+                    pass
             except Exception as e:
                 if Checker.debug:
                     print("ERROR")
