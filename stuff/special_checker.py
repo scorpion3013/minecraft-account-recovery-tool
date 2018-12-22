@@ -1,7 +1,8 @@
-import requests
-import re
 import json
 import math
+import re
+
+import requests
 
 
 def under_four_character_long(username):

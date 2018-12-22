@@ -34,6 +34,7 @@ class Checker:
     class Proxy:
         proxy = bool(config['checker']['proxy']['b_proxy'])
         proxy_check = bool(config['checker']['proxy']['b_check'])
+        type = str(config['checker']['proxy']['s_proxy_type'])
         use_transparent = bool(config['checker']['proxy']['b_use_transparent'])
         api_use = bool(config['checker']['proxy']['b_use_api'])
         api_link = str(config['checker']['proxy']['s_api_link'])

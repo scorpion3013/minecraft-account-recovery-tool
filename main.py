@@ -1,12 +1,12 @@
-from stuff.checker import *
 from stuff.cape_checker import *
-from stuff.special_checker import *
-from stuff.file_creator import *
+from stuff.checker import *
 from stuff.config_reader import *
-from multiprocessing.dummy import Pool as ThreadPool
-from pyfiglet import Figlet
-from termcolor import colored
+from stuff.file_creator import *
+from stuff.special_checker import *
 
+print("Made by scorpion3013")
+print("Contact: www.scorpion3013.xyz")
+time.sleep(5)
 gitversion = requests.get(url="https://raw.githubusercontent.com/scorpion3013/minecraft-account-recovery-tool/master/stuff/version.txt").content.decode()
 yourversion = open(BASIC_PATH + '/stuff/version.txt').readline()
 if gitversion != yourversion:
@@ -187,6 +187,7 @@ def check(x):
     else:
         print("INVALID COMBO")
         Counter.invalid += 1
+
 
 def theads_two(numbers, threads=7):
     pool = ThreadPool(threads)

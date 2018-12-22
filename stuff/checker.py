@@ -53,12 +53,18 @@ def account_login(email_username, password):
            answer = requests.post('https://authserver.mojang.com/authenticate', data=request_body, headers=headers).content
        else:
            while True:
+               proxyy = str(proxy.proxys[random.randrange(0, len(proxy.proxys), 1)]).replace("\n", "")
 
-               proxyy = proxy.proxys[random.randrange(0, len(proxy.proxys), 1)]
-               proxy_dict = {
-                   'http': "http://" + proxyy.replace("\n", ""),
-                   'https': "https://" + proxyy.replace("\n", "")
-               }
+               if Checker.Proxy.type.lower() == "http" or Checker.Proxy.type.lower() == "https":
+                   proxy_dict = {
+                       'http': "http://" + proxyy,
+                       'https': "https://" + proxyy
+                   }
+               elif Checker.Proxy.type.lower() == "socks4" or Checker.Proxy.type.lower() == "socks5":
+                   proxy_dict = {
+                       'http': Checker.Proxy.type.lower() + "://" + proxyy,
+                       'https': Checker.Proxy.type.lower() + "://" + proxyy
+                   }
                try:
                    answer = requests.post('https://authserver.mojang.com/authenticate', data=request_body, headers=headers, proxies=proxy_dict, timeout=15).content
                    break
@@ -85,10 +91,18 @@ def checkproxies(proxies ,threads, timeout, proxyjudge):
         windows = True
     def proxy_checker(x):
         proxie = proxies[x].replace("\n", "")
-        proxy_dict = {
-            'http': "http://" + proxie,
-            'https': "https://" + proxie
-                }
+
+        if Checker.Proxy.type.lower() == "http" or Checker.Proxy.type.lower() == "https":
+            proxy_dict = {
+                'http': "http://" + proxie,
+                'https': "https://" + proxie
+            }
+        elif Checker.Proxy.type.lower() == "socks4" or Checker.Proxy.type.lower() == "socks5":
+            proxy_dict = {
+                'http': Checker.Proxy.type.lower() + "://" + proxie,
+                'https': Checker.Proxy.type.lower() + "://" + proxie
+            }
+
         if windows:
             ctypes.windll.kernel32.SetConsoleTitleW(
                 "MART by scorpion3013 | " +
