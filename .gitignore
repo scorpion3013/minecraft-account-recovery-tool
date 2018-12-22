@@ -9,6 +9,8 @@ result/
 
 accounts\.txt
 
-*.txt
+accounts.txt
+
+proxies.txt
 
 test\.py
