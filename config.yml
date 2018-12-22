@@ -1,6 +1,6 @@
 checker:
   b_debug: False #normal user should keep it False
-  i_check_amount: 1 #needs to be 1 or higher
+  i_check_amount: 2 #needs to be 1 or higher
   capes:
     b_liquidbounce: False
     b_optifine: True
@@ -23,11 +23,13 @@ checker:
     i_minlevel_hypixel: 15
     i_minlevel_mineplex: 15
   threads:
-    i_threads: 700 #threads for account checking
+    i_threads: 400 #threads for account checking
   proxy:
     b_proxy: True #if proxys should be used
     b_check: True #if proxys should be checked before using
     b_use_transparent: true #If true you should also use a vpn
+    b_use_api: false # if false it will use the proxies.txt | if true it will use the api link
+    s_api_link: 'api.example.net/uiphdf12iu4'
 proxy_checker:
   i_timeout: 10000 #Milleseconds
   i_threads: 1000

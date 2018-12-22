@@ -18,12 +18,20 @@ class proxy:
     invalid = 0
     working = []
 
+
 def proxy_getter():
         if Checker.Proxy.proxy:
-            if Checker.Proxy.proxy_check:
-                proxy.proxys = checkproxies(ProxyChecker.Settings.thread_amount, ProxyChecker.Settings.timeout / 1000, ProxyChecker.Settings.proxy_judge)
+            if Checker.Proxy.api_use:
+                print('Sending proxy api request')
+                proxies = requests.get(Checker.Proxy.api_link).content.decode().splitlines()
             else:
-                proxy.proxys = open(BASIC_PATH + "/proxies.txt").readlines()
+                proxies = open(BASIC_PATH + "/proxies.txt").readlines()
+
+            if Checker.Proxy.proxy_check:
+                proxy.proxys = checkproxies(proxies, ProxyChecker.Settings.thread_amount, ProxyChecker.Settings.timeout / 1000, ProxyChecker.Settings.proxy_judge)
+            else:
+                proxy.proxys = proxies
+
 
 def account_login(email_username, password):
    try:
@@ -65,9 +73,8 @@ def account_login(email_username, password):
        answer_json = 'Invalid credentials'
    return answer_json
 
-def checkproxies(threads, timeout, proxyjudge):
+def checkproxies(proxies ,threads, timeout, proxyjudge):
     myip = str(requests.get("https://api.ipify.org/").content.decode())
-    proxies = open(BASIC_PATH + "/proxies.txt").readlines()
     windows = False
 
     if platform.system() == "Windows":
