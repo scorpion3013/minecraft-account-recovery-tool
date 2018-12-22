@@ -1,15 +1,17 @@
 import json
-import os
 import platform
 import random
 import time
 from multiprocessing.dummy import Pool as ThreadPool
-from stuff.config_reader import *
+
+import colorama
 import requests
 from termcolor import colored, cprint
+
 import stuff.config_reader
+from stuff.config_reader import *
 from stuff.file_creator import BASIC_PATH
-import colorama
+
 colorama.init()
 
 
@@ -23,9 +25,10 @@ def proxy_getter():
         if Checker.Proxy.proxy:
             if Checker.Proxy.api_use:
                 print('Sending proxy api request')
-                proxies = requests.get(Checker.Proxy.api_link).content.decode().splitlines()
+                proxies = [x for x in requests.get(Checker.Proxy.api_link).content.decode().splitlines() if ":" in x]
+
             else:
-                proxies = open(BASIC_PATH + "/proxies.txt").readlines()
+                proxies = [x for x in open(BASIC_PATH + "/proxies.txt").readlines() if ":" in x]
 
             if Checker.Proxy.proxy_check:
                 proxy.proxys = checkproxies(proxies, ProxyChecker.Settings.thread_amount, ProxyChecker.Settings.timeout / 1000, ProxyChecker.Settings.proxy_judge)
