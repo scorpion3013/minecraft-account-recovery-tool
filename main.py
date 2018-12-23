@@ -4,7 +4,7 @@ from stuff.config_reader import *
 from stuff.file_creator import *
 from stuff.special_checker import *
 
-yourversion = "1.2.2"
+yourversion = "1.2.3"
 unix = str(int(time.time()))
 if platform.system() == "Windows":
     import ctypes
