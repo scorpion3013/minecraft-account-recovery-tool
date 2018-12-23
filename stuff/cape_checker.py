@@ -6,7 +6,7 @@ def minecon_cape_request(UUID):
     try:
         request_reponse = requests.get('https://sessionserver.mojang.com/session/minecraft/profile/' + UUID).json()
         request_reponse_decoded = json.loads(base64.b64decode(request_reponse["properties"][0]["value"]))
-        if str(request_reponse_decoded).__contains__("Cape"):
+        if str(request_reponse_decoded).__contains__("CAPE"):
             return True
         else:
             return False
@@ -18,13 +18,13 @@ def minecon_cape_request(UUID):
 def five_zig_cape_request(UUID):
     try:
         request_reponse = requests.get('http://textures.5zig.net/textures/2/' + UUID).content
-        if len(str(request_reponse)) > 10:
+        if len(str(request_reponse)) > 20:
             return True
         else:
             return False
     except Exception as e:
         print(e)
-        pass
+        return False
 def optifine_cape_request(USERNAME):
     try:
         request_reponse = requests.get('http://s.optifine.net/capes/' + USERNAME + '.png').content
@@ -34,7 +34,7 @@ def optifine_cape_request(USERNAME):
             return False
     except Exception as e:
         print(e)
-        pass
+        return False
 def laby_mod_cape_request(UUID):
     try:
         uuid_with_dashes = UUID[:8] + '-' + UUID[8:12] + '-' + UUID[12:16] + '-' + UUID[16:20] + '-' + UUID[20:]
@@ -45,7 +45,7 @@ def laby_mod_cape_request(UUID):
             return False
     except Exception as e:
         print(e)
-        pass
+        return False
 def liquidbounce_cape_request(UUID):
     try:
         request_reponse = requests.get('https://raw.githubusercontent.com/CCBlueX/FileCloud/master/LiquidBounce/cape/service.json').content
@@ -55,4 +55,4 @@ def liquidbounce_cape_request(UUID):
             return False
     except Exception as e:
         print(e)
-        pass
+        return False

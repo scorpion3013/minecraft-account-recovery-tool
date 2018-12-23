@@ -3,8 +3,10 @@ from stuff.checker import *
 from stuff.config_reader import *
 from stuff.file_creator import *
 from stuff.special_checker import *
+import codecs
 
-yourversion = "1.2.3"
+test = codecs.encode("test")
+yourversion = "1.2.4"
 unix = str(int(time.time()))
 if platform.system() == "Windows":
     import ctypes
@@ -33,7 +35,7 @@ except:
 
 from stuff import checker
 create_files()
-account_file_lines = open(BASIC_PATH + os.sep + 'accounts.txt', encoding="utf8").read().split('\n')
+account_file_lines = open(BASIC_PATH + os.sep + 'accounts.txt', encoding="utf8", errors='ignore').read().split('\n')
 threads = Checker.Threads.thread_amount
 
 class Counter:
