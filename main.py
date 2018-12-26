@@ -20,7 +20,7 @@ time.sleep(5)
 gitversion = requests.get(url="https://raw.githubusercontent.com/scorpion3013/minecraft-account-recovery-tool/master/stuff/version.txt").content.decode().replace("\n","")
 
 try:
-    if gitversion > yourversion:
+    if gitversion != yourversion:
         print("Your version is outdated.")
         print("Your version: " + yourversion.replace("\n", ""))
         print("Latest version: " + gitversion.replace("\n", ""))
