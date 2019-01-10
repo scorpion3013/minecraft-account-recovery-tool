@@ -30,6 +30,8 @@ checker:
     b_use_transparent: True #If true you should also use a vpn
     b_use_api: false # if false it will use the proxies.txt | if true it will use the api link
     s_api_link: 'api.example.net/uiphdf12iu4'
+  namemc:
+    searches: True #gets amount of monthly searches
 proxy_checker:
   i_timeout: 10000 #Milleseconds
   i_threads: 1000

@@ -174,6 +174,12 @@ def check(x):
                             open(FOLDER_PATH + os.sep + 'liquidbounce' + unix + '.txt', 'a').write(account_file_lines[x] + "\n")
                             result[account_file_lines[x]]["liquidbouncecape"] = True
                             Counter.liquidbounce += 1
+                    if Checker.NameMC.searches:
+                        searches = namemc_searches(username)
+                        if searches is not False:
+                            open(FOLDER_PATH + os.sep + 'namemc' + unix + '.txt', 'a').write(
+                                account_file_lines[x] + ' Searches: ' + str(searches) + "\n")
+                            result[account_file_lines[x]]["namemc"]["searches"] = searches
                 except:
                     pass
             except Exception as e:
