@@ -22,7 +22,7 @@ checker:
     i_minlevel_hypixel: 15
     i_minlevel_mineplex: 15
   threads:
-    i_threads: 400 #threads for account checking
+    i_threads: 400
   proxy:
     b_proxy: True #if proxies should be used
     b_check: True #if proxies should be checked before using
@@ -33,6 +33,6 @@ checker:
   namemc:
     searches: True #gets amount of monthly searches
 proxy_checker:
-  i_timeout: 10000 #Milleseconds
+  i_timeout: 10000 #Milliseconds
   i_threads: 1000
   s_proxy_judge: 'http://azenv.net/'

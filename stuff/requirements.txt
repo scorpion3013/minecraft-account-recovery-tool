@@ -1,6 +1,5 @@
 certifi==2018.8.24
 chardet==3.0.4
-colorama==0.4.1
 idna==2.7
 pyfiglet==0.8.post0
 PySocks==1.6.8
