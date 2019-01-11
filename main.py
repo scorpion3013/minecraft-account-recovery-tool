@@ -5,6 +5,7 @@ from stuff.file_creator import *
 from stuff.special_checker import *
 import codecs
 
+windows = False #define so doesn't error (line 203) if not windows.
 test = codecs.encode("test")
 yourversion = "1.2.4"
 unix = str(int(time.time()))
@@ -13,7 +14,7 @@ if platform.system() == "Windows":
     windows = True
     ctypes.windll.kernel32.SetConsoleTitleW("MART by scorpion3013 | version " + yourversion)
 else:
-    print("Oh, You are not on Windows -> Turnig off title bar status changer")
+    print("Oh, You are not on Windows -> Turning off title bar status changer")
 
 print("Contact: www.scorpion3013.xyz")
 time.sleep(5)
@@ -69,7 +70,7 @@ def check(x):
             if check_counter != Checker.check_amount:
                 answer = account_login(email_username=email_username, password=password)
                 if "errorMessage" in answer:
-                    check_counter = check_counter + 1
+                    check_counter += 1
                 else:
                     break
                     #account was valid
@@ -174,6 +175,12 @@ def check(x):
                             open(FOLDER_PATH + os.sep + 'liquidbounce' + unix + '.txt', 'a').write(account_file_lines[x] + "\n")
                             result[account_file_lines[x]]["liquidbouncecape"] = True
                             Counter.liquidbounce += 1
+                    if Checker.NameMC.searches:
+                        searches = namemc_searches(username)
+                        if searches is not False:
+                            open(FOLDER_PATH + os.sep + 'namemc' + unix + '.txt', 'a').write(
+                                account_file_lines[x] + ' Searches: ' + str(searches) + "\n")
+                            result[account_file_lines[x]]["namemc"]["searches"] = searches
                 except:
                     pass
             except Exception as e:
