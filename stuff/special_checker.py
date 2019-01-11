@@ -129,8 +129,8 @@ def hivemc_rank_check(username):
 def namemc_searches(username):
     try:
         response = str(requests.get('https://namemc.com/search?&q={0}'.format(username), headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:61.0) Gecko/20100101 Firefox/61.0'}))
-        match = "{group}".format(group=re.search(r"Searches: (.*)/", response).group(1))
-        if int(match) == 1: return str(0)
-        return match
+        match = int("{group}".format(group=re.search(r"Searches: (.*)/", response).group(1)))
+        if match == 1: return False #NameMC returns 1 if you are the only one who searches it.
+        return str(match-1)
     except:
         return False
