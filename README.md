@@ -1,4 +1,13 @@
 # minecraft-account-recovery-tool
+
+##Notice:
+
+I got asked alot if I still developing mart, basicly I dont know. My main project is checkolotl now which is an general account checker (I will later make an addon for it so rankchecker etc will work.)
+
+If any critical bugs appear in mart, I will fix them. But dont expect regular updates in mart.
+
+
+
 Codename: mart
 
 NOTICE: After the current issues are added/fixed this project will be closed and made to a multi-account-recovery-tool (which means support for more websites will be added)
