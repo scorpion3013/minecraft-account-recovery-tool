@@ -1,6 +1,6 @@
 # minecraft-account-recovery-tool
 
-##Notice:
+## Notice:
 
 I got asked alot if I still developing mart, basicly I dont know. My main project is checkolotl now which is an general account checker (I will later make an addon for it so rankchecker etc will work.)
 
