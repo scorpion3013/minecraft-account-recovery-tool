@@ -1,6 +1,6 @@
 # minecraft-account-recovery-tool
 
-##IF YOU ARE A CHECKING NOOB USE SIMPLECHECK https://github.com/scorpion3013/SimpleCheck
+IF YOU ARE A CHECKING NOOB USE SIMPLECHECK https://github.com/scorpion3013/SimpleCheck
 ## Notice:
 
 I got asked alot if I still developing mart, basicly I dont know. My main project is checkolotl now which is an general account checker (I will later make an addon for it so rankchecker etc will work.)
