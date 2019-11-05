@@ -3,7 +3,7 @@
 IF YOU ARE A CHECKING NOOB USE SIMPLECHECK https://github.com/scorpion3013/SimpleCheck
 ## Notice:
 
-I got asked alot if I still developing mart, basicly I dont know. My main project is checkolotl now which is an general account checker (I will later make an addon for it so rankchecker etc will work.)
+I got asked a lot if I'm still developing mart, basically I dont know. My main project is checkolotl now which is a general account checker (I will later make an addon for it so rankchecker etc will work.)
 
 If any critical bugs appear in mart, I will fix them. But dont expect regular updates in mart.
 
@@ -21,10 +21,10 @@ This is a tool to recover your minecraft account made in python 3.6
 https://github.com/scorpion3013/minecraft-account-recovery-tool/releases/latest
 
 
-mart vs eggcrack(popularest free tool atm) 
+mart vs eggcrack(most popular free tool atm) 
 ![mart vs eggcrack](https://axolotl.club/6rUP3L93.png?key=XZDF3L9Rkh0AbN)
 
-Only checking for valids account -> mart wins in speed and accuracy.
+Only checking for valid accounts -> mart wins in speed and accuracy.
 
 Notice: Having alot of extra checks enabled will slow mart down. (Cause the extra checks arent async yet)
 
